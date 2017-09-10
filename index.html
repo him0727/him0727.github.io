@@ -1,9 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>him0727 .NET</title>
-	</head>
-	<body>
-  Hello, world!
-  </body>
-  </html>
+<head>
+<title>Him0727 .NET</title>
+<meta charset="utf-8">
+<meta name="author" content="CHAN TAK HIM, him0727">
+<meta name="description" content="him0727's personal website" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" rel="stylesheet" />
+<link href="style/customize.css" rel="stylesheet" />
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+</head>
+<body>
+<div id="top">
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons" style="color: black">menu</i></a>
+				<ul class="right hide-on-med-and-down" id="nav-pc">
+				</ul>
+			</div>
+		</nav>
+		<ul class="side-nav" id="nav-mobile">
+		</ul>
+	</div>
+	<div class="row" id="topInfo">
+      <img src="images/icon.jpg" alt="ICON" class="icon circle responsive-img" />
+      <h5>HIM0727</h5>
+	  <i>GIS user / Code monkey / Urbexer</i><br />
+    </div>
+</div>
+<br />
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<div id="content" width="100%"></div>
+		</div>
+	<div>
+</div>
+<script src="js/common.js"></script>
+<script>
+var links = loadContent("links");
+for (var i in links) {
+	_ = links[i];
+	if (_.status != "Y") continue;
+	$("#topInfo").append("<a href='{0}' target='_blank'><img src='{1}' alt='{2}' class='contact'></a>".format(_.url, _.icon, _.name));
+}
+var menu = loadContent("menu");
+for (var i in menu) {
+	_ = menu[i];
+	if (_.status != "Y") continue;
+	$("#nav-pc").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
+	$("#nav-mobile").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
+}
+</script>
+
+</body>
+</html>

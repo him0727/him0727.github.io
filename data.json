@@ -1,0 +1,26 @@
+{
+	"menu":
+		[
+			{"name": "HOME", "url": "main.html", "status": "Y"},
+			{"name": "ABOUT", "url": "about.html", "status": "Y"},
+			{"name": "PROJECTS", "url": "projects.html", "status": "Y"},
+			{"name": "PLAYGROUND", "url": "playground.html", "status": "Y"},
+			{"name": "ARCHIVE", "url": "archive.html", "status": "Y"}
+		],
+		
+	"links":
+		[
+			{"name": "EMAIL", "url": "mailto:him0727@hotmail.com", "icon": "images/email.png", "status": "Y"},
+			{"name": "FACEBOOK", "url": "https://www.facebook.com/him0727", "icon": "images/facebook.png", "status": "Y"},
+			{"name": "LINKEDIN", "url": "https://hk.linkedin.com/in/chan-tak-him-1876a982", "icon": "images/linkedin.png", "status": "Y"},
+			{"name": "MORE", "url": "about.html", "icon": "images/more.png", "status": "Y"}
+		],
+		
+	"projects":
+		[
+			{"name": "Hong Kong Ruins Database", "url": "projects/ruinsDB", "desc": "Probably the largest database of abandonments in Hong Kong", "tags": ["URBEX", "URBAN EXPLORATION"], "picture": "images/projects/ruinsDB/cover.png", "status": "Y"},
+			{"name": "DOS Lihkg", "url": "projects/LIHKG", "desc": "A DOS style LIHKG reader", "tags": ["LIHKG"], "picture": "images/projects/LIHKG/cover.png", "status": "Y"},
+			{"name": "Responsive Website Tester", "url": "projects/RWTester", "desc": "Test how your website looks at different screen resolutions", "tags": ["RESPONSIVE WEBSITE DESIGN", "WEB DEVELOPMENT"], "picture": "images/projects/RWTester/cover.png", "status": "Y"},
+			{"name": "TrigMapper", "url": "projects/trigMapper", "desc": "Providing API, information and navigation to trigonometrical stations in Hong Kong", "tags": ["GIS", "HOMEWORK"], "picture": "images/projects/trigMapper/cover.png", "status": "N"}
+		]
+}

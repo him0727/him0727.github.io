@@ -1,0 +1,43 @@
+<style>
+	#template {
+		display: none;
+	}
+</style>
+<h5>PROJECTS</h5>
+<div class="row">
+	<div id="template">
+		<div class="col s12 m12 l6">
+			<div class="card hoverable">
+			<div class="card-image">
+				<img src="{0}">
+				<span class="card-title">{1}</span>
+			</div>
+			<div class="card-content">
+				<p>{2}</p>
+				<br>
+				{3}
+			</div>
+			<div class="card-action">
+				<a href="{4}">Visit</a>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div id="display"></div>
+</div>
+<script>
+var projects = loadContent("projects");
+for (var i in projects) {
+	_ = projects[i];
+	if (_.status != "Y") continue;
+	var tags = "";
+	for (j in _.tags) {
+		tags += "<div class='chip'>" + _.tags[j] + "</div>"
+	}
+	var clone = document.getElementById("template").cloneNode(true);
+		clone.id = "";
+		clone.innerHTML = document.getElementById("template").innerHTML.format(_.picture, _.name, _.desc, tags, "javascript:alert('Currently not available')");
+	document.getElementById("display").appendChild(clone);
+	
+}
+</script>
