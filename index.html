@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" rel="stylesheet" />
 <link href="style/customize.css" rel="stylesheet" />
 <link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
@@ -55,6 +55,7 @@ for (var i in menu) {
 	$("#nav-pc").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
 	$("#nav-mobile").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
 }
+$("#content").load("main.html");
 </script>
 
 </body>
