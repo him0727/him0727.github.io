@@ -1,4 +1,10 @@
-$(".button-collapse").sideNav();
+$(".button-collapse").sideNav({
+	menuWidth: 300, 
+	edge: "right", 
+	closeOnClick: true,
+	draggable: true
+});
+
 $(document).on("scroll", function (e) {
 	$("nav").css({'background-color':'rgba(238, 238, 238,' + ($(document).scrollTop() / 210 - 0.2 + ')'),
 		'-webkit-box-shadow':'0px -1px 11px 2px rgba(51,50,51,0.85)',
