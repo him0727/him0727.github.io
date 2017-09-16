@@ -16,11 +16,16 @@
 			{"name": "MORE", "url": "https://github.com/him0727", "icon": "images/github.png", "status": "Y"}
 		],
 		
-	"projects":
+	"applications":
 		[
 			{"name": "Hong Kong Ruins Database", "url": "projects/ruinsDB", "desc": "Probably the largest database of abandonments in Hong Kong", "tags": ["URBEX", "URBAN EXPLORATION"], "picture": "images/projects/ruinsDB/cover.png", "screenshots": "projects/ruinsDB/screenshots.html", "status": "Y"},
 			{"name": "LIHKG DOS", "url": "projects/LIHKG", "desc": "A DOS style LIHKG reader", "tags": ["LIHKG"], "picture": "images/projects/LIHKG/cover.png", "screenshots": "projects/LIHKG/screenshots.html", "status": "Y"},
 			{"name": "Responsive Website Tester", "url": "projects/RWTester", "desc": "Test how your website looks at different screen resolutions", "tags": ["RESPONSIVE WEBSITE DESIGN"], "picture": "images/projects/RWTester/cover.png", "screenshots": "projects/RWTester/screenshots.html", "status": "Y"},
 			{"name": "TrigMapper", "url": "projects/trigMapper", "desc": "Providing API, information and navigation to trigonometrical stations in Hong Kong", "tags": ["GIS", "LAND SURVEYING"], "picture": "images/projects/trigMapper/cover.png", "screenshots": "projects/trigMapper/screenshots.html", "status": "Y"}
+		],
+		
+	"modules":
+		[
+			{"name": "Address Similarity", "url": "https://github.com/him0727/Address-Similarity", "desc": "A python module for calculating the similarity of two given addresses either in Chinese or English", "language": "python", "tags": ["PYTHON", "STRING MANIPULATION", "SIMILARITY"], "status": "Y"}
 		]
 }
