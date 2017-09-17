@@ -27,7 +27,7 @@ $.fn.typewriter = function() {
 				
 				$ele.html(str.substring(offset, progress++) + (progress & 1 ? ' +--+++-+--+--+-++--+-+ ' : ''));
 				if (progress >= str.length) {
-					$ele.html(str.substring(offset, progress));
+					$ele.html(str.substring(offset, progress) + "<br />[Last modified: " + document.lastModified + "]<br />");
 					return;
 				} else {
 					if (str.substring(progress,str.length).match(hi)) 
@@ -97,7 +97,6 @@ Loading...
 > <span class="highlight">WELCOME TO HIM0727 .NET ... <br />HIM0727 </span> is just graduated from PolyU and currently working in Geoinformatics (GIS) field.<br />
 > He is GIS user/ Code monkey/ Urbexer...
 > Click [<a href="javascript:go('about.html');">ABOUT</a>] to know more about him, [<a href="javascript:go('projects.html');">PROJECTS</a>] to see his stuff
-> Welcome to contact via [<a href="mailto:him0727@hotmail.com">EMAIL</a>], [<a href="https://www.facebook.com/him0727" target='_blank'>FACEBOOK</a>] and [<a href="https://hk.linkedin.com/in/chan-tak-him-1876a982" target='_blank'>LINKEDIN</a>]
+> Welcome to contact him via [<a href="mailto:him0727@hotmail.com">EMAIL</a>], [<a href="https://www.facebook.com/him0727" target='_blank'>FACEBOOK</a>] and [<a href="https://hk.linkedin.com/in/chan-tak-him-1876a982" target='_blank'>LINKEDIN</a>]
 > BYE BYE!
-<br />
 </div> 
