@@ -66,6 +66,7 @@ for (var i in menu) {
 	$("#nav-pc").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
 	$("#nav-mobile").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
 }
+$("#content").load("main.html");
 </script>
 </body>
 </html>

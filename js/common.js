@@ -4,7 +4,6 @@ $(".button-collapse").sideNav({
 	closeOnClick: true,
 	draggable: true
 });
-$("#content").load("main.html");
 
 $(document).on("scroll", function (e) {
 	$("nav").css({'background-color':'rgba(238, 238, 238,' + ($(document).scrollTop() / 210 - 0.2 + ')'),
