@@ -40,3 +40,12 @@ nav ul li a.button-collapse {
 	height: 18px;
 	margin: 20px 10px;
 }
+.albumPhoto {
+	width: auto;
+	height: 250px;
+	float: left;
+	margin: 5px;
+}
+.albumPhoto:hover {
+	border: 1px #4fc3f7 groove;
+}
