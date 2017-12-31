@@ -26,6 +26,6 @@
 		
 	"modules":
 		[
-			{"name": "Address Similarity", "url": "https://github.com/him0727/Address-Similarity", "desc": "A python module for calculating the similarity of two given addresses either in Chinese or English", "language": "python", "tags": ["PYTHON", "STRING MANIPULATION", "SIMILARITY"], "status": "Y"}
+			{"name": "Address Similarity", "url": "https://github.com/him0727/Address-Similarity", "desc": "A C++ module for calculating the similarity of two given addresses in Chinese and English *(Python old version also available)", "language": "cpp", "tags": ["C++", "STRING MANIPULATION", "SIMILARITY"], "status": "Y"}
 		]
 }
