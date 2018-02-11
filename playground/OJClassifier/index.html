@@ -1,0 +1,356 @@
+<html>
+<head>
+<title>Online Judge Solution Classifier - Him0727 .NET</title>
+<meta charset="utf-8">
+<meta name="author" content="CHAN TAK HIM, him0727">
+<meta name="description" content="him0727's online judge solutions classifier" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<style>
+  a {
+    color: #0174DF;
+    text-decoration: none;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: "Trebuchet MS";
+  }
+  #template {
+    display: none;
+  }
+  .content {
+    padding: 10px;
+  }
+  #clear_all, #select_all {
+    background-color: #148AF5;
+    border-color: #22639F;
+    color: #ffffff;
+    padding: 5px;
+  }
+  #no_result {
+    margin: 10px 0;
+    text-align: right;
+  }
+  .tag {
+    margin: 0 5px 0 0;
+    padding: 2px 4px;
+    font-size: 8px;
+    border-radius: 3px;
+  }
+  .color_tag {
+    padding: 0 5px;
+    font-weight: normal;
+    font-size: 13px;
+  }
+  .wrap {
+    border-style: solid;
+    border-width: 2px;
+    font-weight: bold;
+    margin: 0 10px 5px 0;
+    padding: 0 0 0 5px;
+    display: inline-block;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<div id="template">
+  <div style="width: 100%; margin: 0 0 10px 0; border-bottom: #dfdfdf 1px dashed;">
+    <span style="width: 30%; float:left; display: inline-block;"><a href="{0}" target="_blank">{1}</a></span>
+    <span style="width: 70%; float:left; display: inline-block;"><a href="{2}" target="_blank">{3}</a></span>
+    <br />
+    <div style="margin: 5px 0;">{4}</div>
+  </div>
+</div>
+<div class="content" style="background-color: #04177C; color: #ffffff;">
+<h2 style="margin: 3px;">Him0727's Online Judge Solutions Classifier</h2>
+</div>
+<div class="content" style="background-color: #EFF1FA;">
+  <span style="color: red;">Currently only solutions to SPOJ are supported. More solutions to other OJs will be avaliable in the future.</span>
+  <br /><br />
+  <span class="wrap" style="background-color: #D2F0EA; border-color: #B5DDD5;">&#8249; Math &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="1" checked="checked"> Math</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="2" checked="checked"> Combinatorics</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="20" checked="checked"> Probability</span>
+  </span>
+  <span class="wrap" style="background-color: #FBDECD; border-color: #F9C3A3;">&#8249; Dynamic Programming &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="3" checked="checked"> Dynamic programming</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="14" checked="checked"> Subsequence</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="2" checked="checked"> Combinatorics</span>
+  </span>
+  <span class="wrap" style="background-color: #F2CBE1; border-color: #F294C9;">&#8249; Graph &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="4" checked="checked"> Graph</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="12" checked="checked"> Depth first search</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="13" checked="checked"> Breadth first search</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="26" checked="checked"> Shortest path</span>
+  </span>
+  <span class="wrap" style="background-color: #B2F98E; border-color: #94F762;">&#8249; Tree &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="9" checked="checked"> Tree</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="10" checked="checked"> Binary indexed tree</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="11" checked="checked"> Segment tree</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="12" checked="checked"> Depth first search</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="13" checked="checked"> Breadth first search</span>
+  </span>
+  <span class="wrap" style="background-color: #E0ECE7; border-color: #BFC9C5;">&#8249; Data structure &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="7" checked="checked"> Data structure</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="18" checked="checked"> Set</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="19" checked="checked"> Queue</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="27" checked="checked"> Hash</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="28" checked="checked"> Stack</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="10" checked="checked"> Binary indexed tree</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="11" checked="checked"> Segment tree</span>
+  </span>
+  <span class="wrap" style="background-color: #A9D0F0; border-color: #79BDF4;">&#8249; Geometry &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="16" checked="checked"> Geometry</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="17" checked="checked"> Connected component</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="29" checked="checked"> Convex hull</span>
+  </span>
+  <span class="wrap" style="background-color: #F7C9D7; border-color: #F2A8BE;">&#8249; Sorting &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="6" checked="checked"> Sorting</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="21" checked="checked"> Greedy</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="24" checked="checked"> Binary search</span>
+  </span>
+  <span class="wrap" style="background-color: #F7FCA3; border-color: #F2F970;">&#8249; Implementation &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="8" checked="checked"> Implementation</span>
+  </span>
+  <span class="wrap" style="background-color: #BDECCC; border-color: #97DBAC;">&#8249; Simulation &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="5" checked="checked"> Simulation</span>
+  </span>
+  <span class="wrap" style="background-color: #F2D6EC; border-color: #EFADE1;">&#8249; String &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="23" checked="checked"> String</span>
+  </span>
+  <span class="wrap" style="background-color: #F7CBC1; border-color: #F4A896;">&#8249; Other &#8250; 
+  <span class="color_tag"><input type="checkbox" class="tags" value="0" checked="checked"> Other</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="15" checked="checked"> Two pointers</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="22" checked="checked"> Divide and conquer</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="25" checked="checked"> Brute force</span>
+  </span>
+  <br />
+  <input type="button" id="select_all" value="Select all">
+  <input type="button" id="clear_all" value="Clear all">
+</div>
+<div class="content">
+  <div id="no_result"></div>
+  <div style="width: 100%; margin: 10px 0; border-bottom: #000000 1px dashed;">
+    <span style="width: 30%; float:left; display: inline-block;">Solution</span>
+    <span style="width: 70%; float:left; display: inline-block;">Problem statement</span>
+    <br />
+  </div>
+  <div id="display"></div>
+  <div style="text-align: center;">&copy; 2018 <a href="https://him0727.github.io/" target="_blank">HIM0727 .NET</a></div>
+</div>
+<script>
+  if (!String.prototype.format) {
+    String.prototype.format = function () {
+      var args = arguments;
+      return this.replace(/{(\d+)}/g, function (match, number) { 
+        return typeof args[number] != "undefined" ? args[number] : match;
+      });
+    };
+  }
+  function getID(id) {
+    return document.getElementById(id);
+  }
+  function getCls(cls) {
+    return document.getElementsByClass(cls);
+  }
+  function load(pool) {
+    var item = Array.from(pool).sort(function (a, b) {
+      return a.name[0] > b.name[0];
+    });
+    for (var i in item) {
+      var tag = "";
+      var url = "https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/" + item[i].name;
+      var purl = "http://www.spoj.com/problems/" + item[i].name.substr(0, item[i].name.indexOf("."));
+      for (var j in item[i].tags) {
+        var t = tags[item[i].tags[j]];
+        tag += "<span class='tag' style='background-color: " + t[1] + "; color: " + t[2] + ";'>" + t[0] + "</span>";
+      }
+      var clone = getID("template").cloneNode(true);
+      clone.id = "";
+      clone.innerHTML = getID("template").innerHTML.format(url, item[i].name, purl, item[i].fname, tag);
+      getID("display").appendChild(clone);
+    }
+    getID("no_result").innerHTML = "Showing " + pool.size + " / " + data.length + " results.";
+  }
+  var tags = [];
+    tags[0] = ["Other", "#D5D5D0", "#000000"];
+    tags[1] = ["Math", "#00FF80", "#000000"];
+    tags[2] = ["Combinatorics", "#F79F81", "#000000"];
+    tags[3] = ["Dynamic programming", "#A9F5BC", "#000000"];
+    tags[4] = ["Graph", "#F7FE2E", "#000000"];
+    tags[5] = ["Simulation", "#DF0101", "#ffffff"];
+    tags[6] = ["Sorting", "#EFFBFB", "#000000"];
+    tags[7] = ["Data structure", "#BFFF00", "#000000"];
+    tags[8] = ["Implementation", "#BCA9F5", "#000000"];
+    tags[9] = ["Tree", "#4B610B", "#ffffff"];
+    tags[10] = ["Binary indexed tree", "#298A08", "#ffffff"];
+    tags[11] = ["Segment tree", "#088A85", "#ffffff"];
+    tags[12] = ["Depth first search", "#ADCFBD", "#000000"];
+    tags[13] = ["Breadth first search", "#91C7B9", "#000000"];
+    tags[14] = ["Subsequence", "#6E1892", "#ffffff"];
+    tags[15] = ["Two pointers", "#E4F045", "#000000"];
+    tags[16] = ["Geometry", "#24EF1E", "#000000"];
+    tags[17] = ["Connected component", "#D5C28A", "#000000"];
+    tags[18] = ["Set", "#DFAFFA", "#000000"];
+    tags[19] = ["Queue", "#EA8D9A", "#000000"];
+    tags[20] = ["Probability", "#6E958D", "#ffffff"];
+    tags[21] = ["Greedy", "#3C063B", "#ffffff"];
+    tags[22] = ["Divide and conquer", "#1E7460", "#ffffff"];
+    tags[23] = ["String", "#8E4328", "#ffffff"];
+    tags[24] = ["Binary search", "#F32BE9", "#ffffff"];
+    tags[25] = ["Brute force", "#D2F10F", "#000000"];
+    tags[26] = ["Shortest path", "#C6ABF0", "#000000"];
+    tags[27] = ["Hash", "#3941AE", "#ffffff"];
+    tags[28] = ["Stack", "#39AE88", "#ffffff"];
+    tags[29] = ["Convex hull", "#049060", "#ffffff"];
+  var data = [
+      {"name": "ABCD.cpp", "fname": "Colours A, B, C, D", "tags": [0, 22]},
+      {"name": "ABSP1.cpp", "fname": "abs(a-b) I", "tags": [1, 2]},
+      {"name": "ACODE.cpp", "fname": "Alphacode", "tags": [1, 2, 3]},
+      {"name": "ACPC10D.cpp", "fname": "Tri graphs", "tags": [3, 4]},
+      {"name": "ACS.cpp", "fname": "A concrete simulation", "tags": [5]},
+      {"name": "ADAFRIEN.cpp", "fname": "Ada and Friends", "tags": [6, 7]},
+      {"name": "ADASEQEN.cpp", "fname": "Ada and Subsequence", "tags": [3]},
+      {"name": "ADDREV.py", "fname": "Adding Reversed Numbers", "tags": [8]},
+      {"name": "AE00.cpp", "fname": "Rectangles", "tags": [1]},
+      {"name": "AE2A.cpp", "fname": "Dice", "tags": [1, 2, 3]},
+      {"name": "AKVQLD03.cpp", "fname": "How to Handle the Fans", "tags": [7, 9, 10]},
+      {"name": "ALLIZWEL.cpp", "fname": "ALL IZZ WELL", "tags": [4, 12]},
+      {"name": "ALTSEQ.cpp", "fname": "Alternating Sequences", "tags": [3, 14]},
+      {"name": "ANARC05B.cpp", "fname": "The Double HeLiX", "tags": [0, 15]},
+      {"name": "ANTTT.cpp", "fname": "The Ant", "tags": [16, 17]},
+      {"name": "ARMY.cpp", "fname": "Army Strength", "tags": [7, 18]},
+      {"name": "ARRAYSUB", "fname": "Subarrays", "tags": [7, 19]},
+      {"name": "ASSIST.cpp", "fname": "Assistance Required", "tags": [5]},
+      {"name": "BAISED.c", "fname": "Biased Standings", "tags": [1, 6]},
+      {"name": "BALLSUM.cpp", "fname": "Ball Sum", "tags": [1, 20]},
+      {"name": "BOMARBLE.cpp", "fname": "Playing with Marbles", "tags": [1]},
+      {"name": "BUSYMAN.cpp", "fname": "I AM VERY BUSY", "tags": [21]},
+      {"name": "BYTESM2.cpp", "fname": "Philosophers Stone", "tags": [3]},
+      {"name": "CAMP5.cpp", "fname": "prayatna PR", "tags": [4, 12]},
+      {"name": "CLONE.cpp", "fname": "Find the Clones", "tags": [6]},
+      {"name": "CODERE3.cpp", "fname": "Coder Express 3!!", "tags": [3, 14]},
+      {"name": "COINS.cpp", "fname": "Bytelandian gold coins", "tags": [3]},
+      {"name": "CRDS.cpp", "fname": "Cards", "tags": [1]},
+      {"name": "CRSCNTRY.cpp", "fname": "Cross-country", "tags": [3, 14]},
+      {"name": "CTTC.cpp", "fname": "Counting Child", "tags": [9, 12, 28]},
+      {"name": "EDIST.cpp", "fname": "Edit distance", "tags": [3]},
+      {"name": "EDIT.cpp", "fname": "Edit Distance Again", "tags": [0]},
+      {"name": "ELEVTRBL.cpp", "fname": "Elevator Trouble", "tags": [5]},
+      {"name": "ESYRCRTN.cpp", "fname": "Why Always Recursion", "tags": [1]},
+      {"name": "FENCE1.cpp", "fname": "Build a Fence", "tags": [1]},
+      {"name": "GCDEASY.cpp", "fname": "Easy GCD", "tags": [1]},
+      {"name": "GDCOFTI.py", "fname": "Greatest Common Divisor Of Three Integers", "tags": [1]},
+      {"name": "GEMS.cpp", "fname": "LAZY FRIENDS", "tags": [3, 8]},
+      {"name": "GNY07D.cpp", "fname": "Decoding", "tags": [8]},
+      {"name": "GOC11A.cpp", "fname": "Appending String", "tags": [5]},
+      {"name": "GSS1.cpp", "fname": "Can you answer these queries I", "tags": [7, 9, 11]},
+      {"name": "GSS3.cpp", "fname": "Can you answer these queries III", "tags": [7, 9, 11]},
+      {"name": "GSS4.cpp", "fname": "Can you answer these queries IV", "tags": [7, 9, 11]},
+      {"name": "HACKRNDM.c", "fname": "Hacking the random number generator", "tags": [2, 6, 24]},
+      {"name": "IITKWPCO.cpp", "fname": "Create Collections", "tags": [0]},
+      {"name": "IMAGE.cpp", "fname": "Image Perimeters", "tags": [4, 12]},
+      {"name": "INS14A.cpp", "fname": "BSTRING", "tags": [0]},
+      {"name": "INS14C.cpp", "fname": "Digo plays with Numbers", "tags": [21]},
+      {"name": "JGTLE.py", "fname": "Jalil Got TLE", "tags": [1]},
+      {"name": "KNAPSACK.cpp", "fname": "The Knapsack Problem", "tags": [3]},
+      {"name": "KOZE.cpp", "fname": "Sheep", "tags": [4, 12]},
+      {"name": "LASTSHOT.cpp", "fname": "THE LAST SHOT", "tags": [4, 12]},
+      {"name": "LUCKYNUM.cpp", "fname": "Lucky Numbers", "tags": [4, 13, 19]},
+      {"name": "MAKEMAZE.cpp", "fname": "VALIDATE THE MAZE", "tags": [4, 13, 19]},
+      {"name": "MAXLN.cpp", "fname": "THE MAX LINES", "tags": [1]},
+      {"name": "MBLAST.cpp", "fname": "BLAST", "tags": [3]},
+      {"name": "MISERMAN.py", "fname": "Wise And Miser", "tags": [3]},
+      {"name": "MMAXPER.cpp", "fname": "Rectangles Perimeter", "tags": [3]},
+      {"name": "MSCHED.cpp", "fname": "Milk Scheduling", "tags": [21]},
+      {"name": "NAJPF.cpp", "fname": "Pattern Find", "tags": [23]},
+      {"name": "NINJA7.cpp", "fname": "TWO SEQUENCES PROBLEM", "tags": [6, 21]},
+      {"name": "NPC2015A.cpp", "fname": "Eefun Guessing Words", "tags": [0]},
+      {"name": "NSTEPS.cpp", "fname": "Number Steps", "tags": [1]},
+      {"name": "NSYSTEM.py", "fname": "Numeral System", "tags": [8]},
+      {"name": "OMWG.cpp", "fname": "One more weird game", "tags": [1]},
+      {"name": "ONEZERO.cpp", "fname": "Ones and zeros", "tags": [4, 13, 19]},
+      {"name": "OPCPIZZA.cpp", "fname": "OPCPIZZA.cpp", "tags": [6, 24]},
+      {"name": "ORDSUM23", "fname": "Sums of 2 and 3", "tags": [1, 2, 3]},
+      {"name": "PARTY.cpp", "fname": "Party Schedule", "tags": [3]},
+      {"name": "PLSEARCH.cpp", "fname": "Polygonal Line Search", "tags": [16]},
+      {"name": "PRO.cpp", "fname": "Promotion", "tags": [7, 18]},
+      {"name": "RANGESUM.cpp", "fname": "Range Sum", "tags": [0]},
+      {"name": "ROADNET.cpp", "fname": "Road net", "tags": [4, 17, 25]},
+      {"name": "RPLD.cpp", "fname": "Database", "tags": [7, 18]},
+      {"name": "SAMER08A.cpp", "fname": "Almost Shortest Path", "tags": [4, 13, 19, 26]},
+      {"name": "SAMER08F.cpp", "fname": "Feynman", "tags": [1]},
+      {"name": "SERGRID.cpp", "fname": "Grid", "tags": [4, 13, 19, 26]},
+      {"name": "SEUG.cpp", "fname": "Seetha’s Unique Game", "tags": [21]},
+      {"name": "SHPATH.cpp", "fname": "The Shortest Path", "tags": [4, 7, 13, 19, 26, 27]},
+      {"name": "SPCU.cpp", "fname": "Gopu and Validity of Arrangement", "tags": [0]},
+      {"name": "SUBSEQ.cpp", "fname": "Counting Subsequences", "tags": [7, 27]},
+      {"name": "TESSER.cpp", "fname": "Finding the Tesserect", "tags": [23]},
+      {"name": "TFOSS.cpp", "fname": "Fossil in the Ice", "tags": [16, 29]},
+      {"name": "TRITILE.cpp", "fname": "Triangle Tiling", "tags": [0]},
+      {"name": "UCBINTB.cpp", "fname": "Car Game", "tags": [8, 23]},
+      {"name": "UCBINTG.cpp", "fname": "Archipelago", "tags": [4, 5, 12]},
+      {"name": "UCV2013H.cpp", "fname": "Slick", "tags": [4, 12]},
+      {"name": "UFPR14D.cpp", "fname": "Inquire", "tags": [8]},
+      {"name": "UOFTCE.cpp", "fname": "A Brief Expedition", "tags": [4, 13, 19]},
+      {"name": "URD.cpp", "fname": "Tiryag Bhyam", "tags": [1, 8]},
+      {"name": "URJC2_A.cpp", "fname": "TV Schedule", "tags": [8]},
+      {"name": "VMILI.cpp", "fname": "Military Story", "tags": [16, 29]},
+      {"name": "WPC5E.cpp", "fname": "Galaxy distances", "tags": [16, 29]},
+      {"name": "XMEN.cpp", "fname": "X-MEN", "tags": [3, 14]}
+    ];
+  var pool = new Set();
+  var container = new Array(tags.length);
+  for (var i in tags) {
+    container[i] = [];
+    for (var j in data) {
+      if ($.inArray(parseInt(i), data[j].tags) != -1) {
+        container[i].push(data[j]);
+      }
+    }
+    $(":checkbox[value='" + i + "']").parent().wrap("<span style='background-color: " + tags[i][1] + "; color: " + tags[i][2] + "; border-radius: 3px;'></spna>");
+  }
+  for (var i in data) {
+    pool.add(data[i]);
+  }
+  load(pool);
+  $(".tags" ).change(function () {
+    var me = $(this).val();
+    if ($(this).is(":checked")) {
+      $(":checkbox[value='" + me + "']").prop("checked", true);
+      for (i in container[me]) {
+        pool.add(container[me][i]);
+      }
+    } else {
+      $(":checkbox[value='" + me + "']").prop("checked", false);
+      for (i in container[me]) {
+        pool.delete(container[me][i]);
+      }
+    }
+    $("#display").hide(200);
+    getID("display").innerHTML = "";
+    load(pool);
+    $("#display").show(200);
+  });
+  $("#clear_all").click(function () {
+    $(".tags" ).prop("checked", false);
+    pool.clear();
+    getID("display").innerHTML = "";
+    getID("no_result").innerHTML = "Showing 0 / " + data.length + " result.";
+  });
+  $("#select_all").click(function () {
+    $(".tags" ).prop("checked", true);
+    getID("display").innerHTML = "";
+    pool.clear();
+    for (var i in data) {
+      pool.add(data[i]);
+    }
+    $("#display").hide(200);
+    load(pool);
+    $("#display").show(200);
+  });
+</script>
+</body>
+</html>
