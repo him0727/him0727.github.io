@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>Online Judge Solution Classifier - Him0727 .NET</title>
+<meta charset="utf-8">
+<meta name="author" content="CHAN TAK HIM, him0727">
+<meta name="description" content="him0727's online judge solutions classifier" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<style>
+  a {
+    color: #0174DF;
+    text-decoration: none;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: "Trebuchet MS";
+  }
+  hr {
+    border: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    height: 1px;
+    margin: 30px 0 30px 0;
+  }
+  h2 {
+    text-align: center;
+    margin: 5px 0 5px 0;
+  }
+  h3 {
+    margin: 10px 0 5px 0;
+  }
+  .content {
+    padding: 10px;
+    overflow: hidden;
+  }
+  .menu-this, .menu {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px;
+    display: inline-block;
+  }
+  .menu-this {
+    border: 2px #D8D8D8 inset;
+    background-color: rgba(238, 238, 238, 0.3);
+    color: #D8D8D8;
+    text-decoration: underline;
+  }
+  .menu {
+    border: 2px #D8D8D8 solid;
+    background-color: rgba(238, 238, 238, 0.7);
+  }
+  .menu a {
+    color: #04177C;
+  }
+  .menu:hover {
+    cursor: hand;
+  }
+  .constraint {
+    font-size: 9px;
+    text-align: center;
+    margin: 0 0 5px 0;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<div class="content" style="background-color: #04177C; color: #ffffff;">
+<div style="float: left;">
+<h2 style="margin: 3px;">Him0727's Online Judge Solutions Classifier</h2>
+</div>
+<div style="float: right;">
+<span class="menu-this">Problems created by me</span>
+<span class="menu"><a href="index.html">My solutions to others' problems</a></span>
+</div>
+</div>
+<div class="content" style="background-color: #EFF1FA;">
+  <span style="color: red;">I am a problem setter on SPOJ. This page contains the links of problem statements and solutions to the problems created by me. If you have not seen it yet, welcome to solve it. If you feel stuck, try to read the solution and implement it. I look forward to your better solution.</span>
+</div>
+<div class="content">
+  <h2>TRFPLN - Traffic Planning</h2>
+  <div class="constraint">
+    Time: 0.04s per test file<br/>
+    Source: 5000B<br/>
+    Memory: 1536MB<br/>
+    Languages: ALL<br />
+    Problem statement: <a href="http://www.spoj.com/problems/TRFPLN/" target="_blank">Link</a>
+  </div>
+  The road network is grid pattern, all road intersections' coordinates are integers, and the traffic police can only move horizontally and vertically. These observations imply that we are required to calculate the 3D manhattan distance using formula |X<sub>i</sub> - X<sub>j</sub>| + |Y<sub>i</sub> - Y<sub>j</sub>| + |Z<sub>i</sub> - Z<sub>j</sub>|, between one intersection and all other intersections, for each intersection. And the one that has the smallest sum of distances is the answer. Brute-force is the easiest way to solve and implement, but O(N<sup>2</sup>) is likely to fail the time limit (0.04s). So we need a better strategy.
+  <h3>Approach 1: Sorting and prefix sum</h3>
+  For manhattan distance, we can consider each dimension separately. Firstly, we sort X, Y, Z ascendingly in three separate arrays, respectively, also remember to store the original ID for each point. Sorting for three dimensions is O(3 * N log N). Then, we calculate the prefix sum of X, Y, Z respectively, using three sorted arrays. For example, 1 &le; i &le; N, where N is the number of points, in X dimension, sum_x[0] = 0 and sum_x[i] = sum_x[i - 1] + X[i - 1]. Now, we can calculate the sum of distances to other points for a point in X, Y, Z, using three pairs of sorted array and prefix sum array, respectively. The calculation is not in the ID order, but in the sorted dimension value order, so we can make use of the original ID of the current sorted point. Let's take Z as an example, the idea is to find the left part sum (smaller than Z) and the right part sum (larger than Z), the derived relation is dist_z[Z[i].id] = i * Z[i].val - sum_z[i] + sum_z[N] - sum_z[i + 1] - (N - i - 1) * Z[i].val, 0 &le; i &le; N - 1. Do the same for X and Y. Lastly, we can do a linear scan to find the index i that minimizes dist_x[i] + dist_y[i] + dist_z[i] in O(N). The overall time complexity is O(N log N).<br />
+  Solution: <a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/TRFPLN.cpp" target="_blank">Link</a>
+  <hr />
+  <h2>MAPEXC - Map Exploration Cost</h2>
+  <div class="constraint">
+    Time: 0.02s per test file<br/>
+    Source: 5000B<br/>
+    Memory: 1536MB<br/>
+    Languages: ALL<br />
+    Problem statement: <a href="http://www.spoj.com/problems/MAPEXC/" target="_blank">Link</a>
+  </div>
+  This is a graph problem. Actually, we can treat cost as distance, so our main task is to caculate the cost matrix for the given map. Once we know the shortest distances from S to all other cells (it seems Dijkstra Algorithm is useful here), we can answer the first question of the problem and generate the new map for the second question. If you are careful enough, you will find a big hint mentioned in the problem statement: only from '.' to '.' will increase no cost. Now, we get two conditions for every move: 1. Cost remains unchanged, or 2. Cost + 1.
+  <h3>Approach 1: Breadth first search (BFS)</h3>
+  We need a cost matrix filled with -1 and to do a BFS from S in four directions in O(N * M). Let the front of the queue be P, check if the new adjacent cell (C) is within the map area. If yes, we have to check the map symbol of P and C. If graph[C<sub>i</sub>][C<sub>j</sub>] and graph[P<sub>i</sub>][P<sub>j</sub>] are both '.', we will enter condition 1, else condition 2.<br />Condition 1: cost[C<sub>i</sub>][C<sub>j</sub>] = -1 means we have not visited C yet, or cost[C<sub>i</sub>][C<sub>j</sub>] &gt; cost[P<sub>i</sub>][P<sub>j</sub>] means we have shorter distance from S to C. In these cases, we set cost[C<sub>i</sub>][C<sub>j</sub>] to cost[P<sub>i</sub>][P<sub>j</sub>].<br />Condition 2: cost[C<sub>i</sub>][C<sub>j</sub>] = -1, or cost[C<sub>i</sub>][C<sub>j</sub>] &gt; cost[P<sub>i</sub>][P<sub>j</sub>] + 1 means the shortest distance from S to C will be cost[P<sub>i</sub>][P<sub>j</sub>] + 1. In these cases, we set cost[C<sub>i</sub>][C<sub>j</sub>] to cost[P<sub>i</sub>][P<sub>j</sub>] + 1.<br />Then, we push C into the queue, keep iterating until it is empty. Finally, all cells are visited and we get the cost matrix, telling us the shortest distances from S to other cells. We can now just check if cost[F<sub>i</sub>][F<sub>j</sub>] &le; D to answer the first question. For the second question, loop the cost matrix, if current position is S or F, output the corresponding character. If not, check if cost[i][j] &le; cost[F<sub>i</sub>][F<sub>j</sub>], if yes, output '.', else '#'.<br />
+  Solution: <a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MAPEXC_1.cpp" target="_blank">Link</a>
+  <h3>Approach 2: Combination of BFS and DFS (Depth first search)</h3>
+  If you love typing, choose this approach. The procedure is BFS - DFS - BFS. Firstly, do a BFS from S in four directions, without comparing the map symbol of the front of the queue with the adjacent cell. But we have to check if the new cell's symbol is '.', and record the position of the first one, that is E. This gives us the shortest distances from S to other cells, assuming there is no empty tunnel in the given map, the results are in cost1[N][M]. Since we already knew the shortest distance from S to the nearest tunnel cell and its position. If there are, now we can do a DFS from E to fill the whole tunnel and find the edge of it, that is, at least one edge of tunnel cell is not connected with another tunnel cell. After that, do a BFS again. This time, we do it for a polygon (as we know the edge of tunnel) with initial cost cost1[E<sub>i</sub>][E<sub>j</sub>], rather than a point. This gives us the shortest distances from the edge of tunnel to other cells plus its initial cost, results are stored in cost2[N][M]. If we merge cost1[N][M] and cost2[N][M] by choosing min(cost1[i][j], cost2[i][j]), we will obtain the correct cost matrix.<br />
+  Solution: <a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MAPEXC_2.cpp" target="_blank">Link</a>
+  <br /><br />
+  <div style="text-align: center;">&copy; 2018 <a href="https://him0727.github.io/" target="_blank">HIM0727 .NET</a></div>
+</div>
+</body>
+</html>

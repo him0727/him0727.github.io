@@ -21,6 +21,7 @@
   }
   .content {
     padding: 10px;
+    overflow: hidden;
   }
   #clear_all, #select_all {
     background-color: #148AF5;
@@ -51,6 +52,28 @@
     padding: 0 0 0 5px;
     display: inline-block;
   }
+  .menu-this, .menu {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px;
+    display: inline-block;
+  }
+  .menu-this {
+    border: 2px #D8D8D8 inset;
+    background-color: rgba(238, 238, 238, 0.3);
+    color: #D8D8D8;
+    text-decoration: underline;
+  }
+  .menu {
+    border: 2px #D8D8D8 solid;
+    background-color: rgba(238, 238, 238, 0.7);
+  }
+  .menu a {
+    color: #04177C;
+  }
+  .menu:hover {
+    cursor: hand;
+  }
 </style>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
@@ -64,7 +87,13 @@
   </div>
 </div>
 <div class="content" style="background-color: #04177C; color: #ffffff;">
+<div style="float: left;">
 <h2 style="margin: 3px;">Him0727's Online Judge Solutions Classifier</h2>
+</div>
+<div style="float: right;">
+<span class="menu-this">My solutions to others' problems</span>
+<span class="menu"><a href="my_problems.html">Problems created by me</a></span>
+</div>
 </div>
 <div class="content" style="background-color: #EFF1FA;">
   <span style="color: red;">Currently only solutions to SPOJ are supported. More solutions to other OJs will be available in the future.</span>
@@ -237,6 +266,7 @@
       {"name": "CRDS.cpp", "fname": "Cards", "tags": [1]},
       {"name": "CRSCNTRY.cpp", "fname": "Cross-country", "tags": [3, 14]},
       {"name": "CTTC.cpp", "fname": "Counting Child", "tags": [9, 12, 28]},
+      {"name": "DIGNUM.cpp", "fname": "Digital LED Number", "tags": [0, 8]},
       {"name": "EDIST.cpp", "fname": "Edit distance", "tags": [3]},
       {"name": "EDIT.cpp", "fname": "Edit Distance Again", "tags": [0]},
       {"name": "EKO.cpp", "fname": "Eko", "tags": [6, 24]},
@@ -246,10 +276,12 @@
       {"name": "EXPEDI.cpp", "fname": "Expedition", "tags": [6, 7, 19, 21]},
       {"name": "FENCE1.cpp", "fname": "Build a Fence", "tags": [1]},
       {"name": "GCDEASY.cpp", "fname": "Easy GCD", "tags": [1]},
+      {"name": "GCJ101BB.cpp", "fname": "Picking Up Chicks", "tags": [1, 21]},
       {"name": "GCPC11J.cpp", "fname": "Time to live", "tags": [4, 12]},
       {"name": "GDCOFTI.py", "fname": "Greatest Common Divisor Of Three Integers", "tags": [1]},
       {"name": "GEMS.cpp", "fname": "LAZY FRIENDS", "tags": [3, 8]},
       {"name": "GERGOVIA.cpp", "fname": "Wine trading in Gergovia", "tags": [15, 21]},
+      {"name": "GMSTRE.cpp", "fname": "Game Store", "tags": [6]},
       {"name": "GNY07D.cpp", "fname": "Decoding", "tags": [8]},
       {"name": "GOC11A.cpp", "fname": "Appending String", "tags": [5]},
       {"name": "GSS1.cpp", "fname": "Can you answer these queries I", "tags": [7, 9, 11]},
