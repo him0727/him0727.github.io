@@ -154,6 +154,8 @@
   <span class="color_tag"><input type="checkbox" class="tags" value="15" checked="checked"> Two pointers</span>
   <span class="color_tag"><input type="checkbox" class="tags" value="22" checked="checked"> Divide and conquer</span>
   <span class="color_tag"><input type="checkbox" class="tags" value="25" checked="checked"> Brute force</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="30" checked="checked"> Bitmasking</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="31" checked="checked"> Backtracking</span>
   </span>
   <br />
   <input type="button" id="select_all" value="Select all">
@@ -234,6 +236,8 @@
     tags[27] = ["Hash", "#3941AE", "#ffffff"];
     tags[28] = ["Stack", "#39AE88", "#ffffff"];
     tags[29] = ["Convex hull", "#049060", "#ffffff"];
+    tags[30] = ["Bitmasking", "#646765", "#ffffff"];
+    tags[31] = ["Backtracking", "#568ADE", "#ffffff"];
   var data = [
       {"name": "ABCD.cpp", "fname": "Colours A, B, C, D", "tags": [0, 22]},
       {"name": "ABSP1.cpp", "fname": "abs(a-b) I", "tags": [1, 2]},
@@ -246,8 +250,8 @@
       {"name": "AE00.cpp", "fname": "Rectangles", "tags": [1]},
       {"name": "AE2A.cpp", "fname": "Dice", "tags": [1, 3, 20]},
       {"name": "AKVQLD03.cpp", "fname": "How to Handle the Fans", "tags": [7, 9, 10]},
-      {"name": "ALCATRAZ3.cpp", "fname": "THE HONEYCOMB MAZE", "tags": [4, 12]},
-      {"name": "ALLIZWEL.cpp", "fname": "ALL IZZ WELL", "tags": [4, 12]},
+      {"name": "ALCATRAZ3.cpp", "fname": "THE HONEYCOMB MAZE", "tags": [4, 12, 31]},
+      {"name": "ALLIZWEL.cpp", "fname": "ALL IZZ WELL", "tags": [4, 12, 31]},
       {"name": "ALTSEQ.cpp", "fname": "Alternating Sequences", "tags": [3, 14]},
       {"name": "AMBM.cpp", "fname": "Ambitious Manager", "tags": [21]},
       {"name": "ANARC05B.cpp", "fname": "The Double HeLiX", "tags": [0, 15]},
@@ -271,6 +275,7 @@
       {"name": "CURDPROD.cpp", "fname": "CURD PRODUCERS", "tags": [24]},
       {"name": "DBALLZ.cpp", "fname": "Help the Heroes", "tags": [3]},
       {"name": "DIGNUM.cpp", "fname": "Digital LED Number", "tags": [0, 8]},
+      {"name": "DP.cpp", "fname": "Deliver pizza", "tags": [4, 13, 26, 30]},
       {"name": "EDIST.cpp", "fname": "Edit distance", "tags": [3]},
       {"name": "EDIT.cpp", "fname": "Edit Distance Again", "tags": [0]},
       {"name": "EKO.cpp", "fname": "Eko", "tags": [6, 24]},
@@ -308,6 +313,7 @@
       {"name": "LUCKYNUM.cpp", "fname": "Lucky Numbers", "tags": [4, 13, 19]},
       {"name": "MAJSTOR.cpp", "fname": "Majstor", "tags": [0, 21]},
       {"name": "MAKEMAZE.cpp", "fname": "VALIDATE THE MAZE", "tags": [4, 13, 19]},
+      {"name": "MAXI.cpp", "fname": "Get higher and higher", "tags": [3]},
       {"name": "MAXLN.cpp", "fname": "THE MAX LINES", "tags": [1]},
       {"name": "MBLAST.cpp", "fname": "BLAST", "tags": [3]},
       {"name": "MISERMAN.py", "fname": "Wise And Miser", "tags": [3]},
@@ -327,7 +333,9 @@
       {"name": "ONEZERO.cpp", "fname": "Ones and zeros", "tags": [4, 13, 19]},
       {"name": "OPCPIZZA.cpp", "fname": "OPCPIZZA.cpp", "tags": [6, 24]},
       {"name": "ORDSUM23", "fname": "Sums of 2 and 3", "tags": [1, 2, 3]},
+      {"name": "ORGNZ.cpp", "fname": "Organizator", "tags": [1]},
       {"name": "PARTY.cpp", "fname": "Party Schedule", "tags": [3]},
+      {"name": "PIZZALOC.cpp", "fname": "Pizza Location", "tags": [30]},
       {"name": "PLSEARCH.cpp", "fname": "Polygonal Line Search", "tags": [16]},
       {"name": "PLYGRND.cpp", "fname": "Playground", "tags": [6]},
       {"name": "PRO.cpp", "fname": "Promotion", "tags": [7, 18]},
@@ -336,6 +344,7 @@
       {"name": "RAIN3.cpp", "fname": "Rain", "tags": [24]},
       {"name": "RANDG.cpp", "fname": "Red And Green", "tags": [0, 22]},
       {"name": "RANGESUM.cpp", "fname": "Range Sum", "tags": [0]},
+      {"name": "REDRONESIA.cpp", "fname": "Counting Words", "tags": [2, 3]},
       {"name": "REPROAD.cpp", "fname": "Repair road", "tags": [15, 25]},
       {"name": "ROADNET.cpp", "fname": "Road net", "tags": [4, 17, 25]},
       {"name": "ROCK.cpp", "fname": "Sweet and Sour Rock", "tags": [3]},
@@ -362,6 +371,7 @@
       {"name": "UPSUB.cpp", "fname": "Up Subsequence", "tags": [2, 3, 6, 12, 14, 23]},
       {"name": "URD.cpp", "fname": "Tiryag Bhyam", "tags": [1, 8]},
       {"name": "URJC2_A.cpp", "fname": "TV Schedule", "tags": [8]},
+      {"name": "VISIBLEBOX.cpp", "fname": "Decreasing Number of Visible Box", "tags": [21]},
       {"name": "VMILI.cpp", "fname": "Military Story", "tags": [16, 29]},
       {"name": "WPC5E.cpp", "fname": "Galaxy distances", "tags": [16, 29]},
       {"name": "XMEN.cpp", "fname": "X-MEN", "tags": [3, 14]}
