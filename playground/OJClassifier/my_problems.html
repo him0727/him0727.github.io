@@ -131,8 +131,8 @@
       <li>LNTILING - Long Tiling</li>
       <li>GIFTARNG - Gift Arrangement</li>
       <!--<li>PSHAPE - Plane Shapes Formation</li>-->
-      <li>PRIPYAT - Pripyat</li>
-      <li>TRIBT - Triangle in Binary Tree</li>
+      <!--<li>PRIPYAT - Pripyat</li>-->
+      <li>TRIBT - Triangle on Binary Tree</li>
       <li>SMTOILET - Smelly Toilets</li>
       <li>MAPEXC - Map Exploration Cost</li>
       <li>TRFPLN - Traffic Planning</li>
@@ -152,21 +152,21 @@
   <hr />
   Let N and M be the length of S and number of gems, all the gems will split the whole string into M + 1 segments. We can solve this problem by dynamic programming with greedy insight in O(N). As we have to collect all gems and one teleporter can only send us to next 3 teleporters, which means we can only move forward and collect the gems sequentially. Now consider each segment individually, we will find out the minimum number of moves in each segment by dynamic programming, and then we can overview the whole string greedily by adding the results of each segment together.
   <h3>Approach 1: Dynamic programming (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/TLPNGEM.cpp" target="_blank">Solution Link</a>)</h3>
-  Although we have M + 1 segments, we actually work on M segments because the last segment will not contain any gem. A string S "@.*..@.@**.." produces three segments: {1 - 3, 3 - 9, 9 - 10}. In each segment, we want to record all teleporters' relative position, from that example, it is {{1}, {4, 6}, {}}. Let SL<sub>i</sub> and SP<sub>i, j</sub> be the length of segment i and the relative position of teleporter j in segment i, respectively. For each i, we define a function f(p) where 1 &le; p &le; SL<sub>i</sub>, as the minimum number of moves from position 1 to p in segment i. Thus, f(SL<sub>i</sub>) will be the answer of segment i, and &sum;<sub>i=1</sub><sup>M</sup> f(SL<sub>i</sub>) is the final answer. Initially, f(p) is filled with INF, where INF is a number larger than the largest possible answer which is 10000 in this problem. If the segment contains either 1 or 0 teleporter, f(SL<sub>i</sub>) is simply SL<sub>i</sub> - 1 because we can only move step by step. If the segment contains at least two teleporters, the answer may be less than SL<sub>i</sub>. Please consider the following formulation:
+  Although we have M + 1 segments, we actually work on M segments because the last segment will not contain any gem. A string S "@.*..@.@**.." produces three segments: [1 - 3, 3 - 9, 9 - 10]. In each segment, we want to record all teleporters' relative position, from that example, it is [[1], [4, 6], []]. Let SL<sub>i</sub> and SP<sub>i, j</sub> be the length of segment i and the relative position of teleporter j in segment i, respectively. For each i, we define a function f(p) where 1 &le; p &le; SL<sub>i</sub>, as the minimum number of moves from position 1 to p in segment i. Thus, f(SL<sub>i</sub>) will be the answer of segment i, and &sum;<sub>i=1</sub><sup>M</sup> f(SL<sub>i</sub>) is the final answer. Initially, f(p) is filled with INF, where INF is a number larger than the largest possible answer which is 10000 in this problem. If the segment contains either 1 or 0 teleporter, f(SL<sub>i</sub>) is simply SL<sub>i</sub> - 1 because we can only move step by step. If the segment contains at least two teleporters, the answer may be less than SL<sub>i</sub>. Please consider the following formulations:
   <ul>
     <li>S<sub>p</sub> is gem "*", we are either at the most left or most right cell, thus
       <br />- f(1) = 0
       <br />- f(SL<sub>i</sub>) = f(SL<sub>i</sub> - 1) + 1</li>
     <li>S<sub>p</sub> is empty cell ".", without the help of teleporters we can only move 1 unit by 1 move, thus
       <br />- f(p) = f(p - 1) + 1</li>
-    <li>S<sub>p</sub> is teleporter "@", where p = SP<sub>i, j</sub>, we consider being transferred from any of previous 3 teleporters or not being transferred. But we compute from left to right sequentially, thus f(p) is already known, except the first teleporter, thus
+    <li>S<sub>p</sub> is teleporter "@", where p = SP<sub>i, j</sub>, we consider being transferred from any of previous 3 teleporters or not being transferred. We can compute from either left to right or right to left, sequentially. If we compute from left to right, f(p) is already known, except the first teleporter, thus
       <br />- f(p) = SP<sub>i, 1</sub> - 1, where p = SP<sub>i, 1</sub>
       <br />- f(SP<sub>i, j + 1</sub>) = min(f(SP<sub>i, j + 1</sub>), f(SP<sub>i, j + 1</sub> - 1) + 1, f(SP<sub>i, j</sub>) + 3)
       <br />- f(SP<sub>i, j + 2</sub>) = min(f(SP<sub>i, j + 2</sub>), f(SP<sub>i, j + 2</sub> - 1) + 1, f(SP<sub>i, j</sub>) + 3, f(SP<sub>i, j + 1</sub>) + 3)
       <br />- f(SP<sub>i, j + 3</sub>) = min(f(SP<sub>i, j + 3</sub>), f(SP<sub>i, j + 3</sub> - 1) + 1, f(SP<sub>i, j</sub>) + 3, f(SP<sub>i, j + 1</sub>) + 3, f(SP<sub>i, j + 2</sub>) + 3)</li>
       Keep iterating over all teleporters in that segment, and finally we get f(SL<sub>i</sub>).
   </ul>
-  Keep iterating over all segments and doing the above procedures, we get all f(SL<sub>i</sub>) from segment 1 to M. Adding all results together greedily produces the minimum number of moves from S<sub>1</sub> to S<sub>&sum;<sub>i=1</sub><sup>M</sup> SL<sub>i</sub> - M - 1</sub> in O(N).
+  Keep iterating over all segments and doing the above procedures, which can be done by double-ended queue (Deque) or three pointers, we get all f(SL<sub>i</sub>) from segment 1 to M. Adding all results together greedily produces the minimum number of moves from S<sub>1</sub> to S<sub>&sum;<sub>i=1</sub><sup>M</sup> SL<sub>i</sub> - M - 1</sub> in O(N).
   </div>
   <div id="LNTILING">
   <div class="constraint">
@@ -198,7 +198,7 @@
   <hr />
   In this problem, we have to consider all possible rotations of box and figure out the optimal combination. Instead of a O(6<sup>N</sup>) naive solution, a O(N) dynamic programming solution will be described here.
   <h3>Approach 1: Dynamic programming (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/GIFTARNG.cpp" target="_blank">Solution Link</a>)</h3>
-  Let's start with the three unduplicated surfaces of a gift box {W, D}, {H, D}, {W, H}, considering every possible variants of them, we have 6 possible rotations {W, D, H}, {W, H, D}, {D, W, H}, {D, H, W}, {H, W, D} and {H, D, W}. Let R<sub>j, i</sub>, where 1 &le; j &le; 6, be the corresponding dimensions of j-th rotation of the i-th gift, assigning {X, Y, Z} to {width, height, depth}. We want to maximize the total visible area without keeping trying all combinations repeatedly, so let's define a function f(r, i), where 1 &le; r &le; 6, as the current maximum visible area we can get from 1 to i-th gift, in which we place the i-th gift with R<sub>j, i</sub> dimensions. Then, we can use the following formulation. 
+  Let's start with the three unduplicated surfaces of a gift box {W, D}, {H, D}, {W, H}, considering every possible variants of them, we have 6 possible rotations {W, D, H}, {W, H, D}, {D, W, H}, {D, H, W}, {H, W, D} and {H, D, W}. Let R<sub>j, i</sub>, where 1 &le; j &le; 6, be the corresponding dimensions of j-th rotation of the i-th gift, assigning {X, Y, Z} to {width, height, depth}. We want to maximize the total visible area without keeping trying all combinations repeatedly, so let's define a function f(r, i), where 1 &le; r &le; 6, as the current maximum visible area we can get from 1 to i-th gift, in which we place the i-th gift with R<sub>j, i</sub> dimensions. Then, we can use the following formulations. 
   <ul>
   <li>f(r, 1) = R<sub>j, 1</sub>{W, D} * 2 + R<sub>j, 1</sub>{H, D} * 2 + R<sub>j, 1</sub>{W, H}.<br />
   For the first gift, f(r, 1) is simply the total surface area except the bottom of that gift with r dimensions.</li>
@@ -302,7 +302,7 @@
   </div>
 </div>
 <hr />
-<div style="text-align: center;">&copy; 2018 <a href="https://him0727.github.io/" target="_blank">HIM0727 .NET</a></div>
+<div style="text-align: center;">&copy; 2019 <a href="https://him0727.github.io/" target="_blank">HIM0727 .NET</a></div>
 <br />
 <script>
   function go(what) {

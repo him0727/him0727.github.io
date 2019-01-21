@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <title>Online Judge Solution Classifier - Him0727 .NET</title>
 <meta charset="utf-8">
@@ -87,13 +87,13 @@
   </div>
 </div>
 <div class="content" style="background-color: #04177C; color: #ffffff;">
-<div style="float: left;">
-<h2 style="margin: 3px;">Him0727's Online Judge Solutions Classifier</h2>
-</div>
-<div style="float: right;">
-<span class="menu-this">My solutions to others' problems</span>
-<span class="menu"><a href="my_problems.html">Problems created by me</a></span>
-</div>
+  <div style="float: left;">
+    <h2 style="margin: 3px;">Him0727's Online Judge Solutions Classifier</h2>
+  </div>
+  <div style="float: right;">
+    <span class="menu-this">My solutions to others' problems</span>
+    <span class="menu"><a href="my_problems.html">Problems created by me</a></span>
+  </div>
 </div>
 <div class="content" style="background-color: #EFF1FA;">
   <span style="color: red;">Currently only solutions to SPOJ are supported. More solutions to other OJs will be available in the future.</span>
@@ -129,6 +129,7 @@
   <span class="color_tag"><input type="checkbox" class="tags" value="28" checked="checked"> Stack</span>
   <span class="color_tag"><input type="checkbox" class="tags" value="10" checked="checked"> Binary indexed tree</span>
   <span class="color_tag"><input type="checkbox" class="tags" value="11" checked="checked"> Segment tree</span>
+  <span class="color_tag"><input type="checkbox" class="tags" value="32" checked="checked"> Disjoint set union</span>
   </span>
   <span class="wrap" style="background-color: #A9D0F0; border-color: #79BDF4;">&#8249; Geometry &#8250; 
   <span class="color_tag"><input type="checkbox" class="tags" value="16" checked="checked"> Geometry</span>
@@ -169,7 +170,7 @@
     <br />
   </div>
   <div id="display"></div>
-  <div style="text-align: center;">&copy; 2018 <a href="https://him0727.github.io/" target="_blank">HIM0727 .NET</a></div>
+  <div style="text-align: center;">&copy; 2019 <a href="https://him0727.github.io/" target="_blank">HIM0727 .NET</a></div>
 </div>
 <script>
   if (!String.prototype.format) {
@@ -188,7 +189,7 @@
   }
   function load(pool) {
     var item = Array.from(pool).sort(function (a, b) {
-      return a.name[0] > b.name[0];
+      return a.name.localeCompare(b.name);
     });
     for (var i in item) {
       var tag = "";
@@ -238,6 +239,7 @@
     tags[29] = ["Convex hull", "#049060", "#ffffff"];
     tags[30] = ["Bitmasking", "#646765", "#ffffff"];
     tags[31] = ["Backtracking", "#568ADE", "#ffffff"];
+    tags[32] = ["Disjoint set union", "#FDD2A4", "#000000"];
   var data = [
       {"name": "ABCD.cpp", "fname": "Colours A, B, C, D", "tags": [0, 22]},
       {"name": "ABCPATH.cpp", "fname": "ABC Path", "tags": [4, 12]},
@@ -284,12 +286,15 @@
       {"name": "CAMP5.cpp", "fname": "prayatna PR", "tags": [4, 12]},
       {"name": "CCHESS.cpp", "fname": "COSTLY CHESS", "tags": [4, 19, 26]},
       {"name": "CDOWN.cpp", "fname": "Countdown", "tags": [0, 9]},
+      {"name": "CFRAC2.cpp", "fname": "Continuous Fractions Again", "tags": [1, 8]},
+      {"name": "CHASE.cpp", "fname": "A Chase In WonderLand", "tags": [6, 16, 21]},
+      {"name": "CLAW.cpp", "fname": "Captain Claw", "tags": [7, 19]},
       {"name": "CLONE.cpp", "fname": "Find the Clones", "tags": [6]},
       {"name": "CMPSSTR.cpp", "fname": "Compare Substring", "tags": [3]},
       {"name": "CODEM4.cpp", "fname": "Problem4", "tags": [3]},
       {"name": "CODERE3.cpp", "fname": "Coder Express 3!!", "tags": [3, 14]},
       {"name": "COINS.cpp", "fname": "Bytelandian gold coins", "tags": [3]},
-      {"name": "CORNET.cpp", "fname": "Corporative Network", "tags": [7, 18]},
+      {"name": "CORNET.cpp", "fname": "Corporative Network", "tags": [7, 32]},
       {"name": "COUNT1IT.cpp", "fname": "Ghost Town", "tags": [7, 8, 9]},
       {"name": "CRAN02.cpp", "fname": "Roommate Agreement", "tags": [1, 2]},
       {"name": "CRDS.cpp", "fname": "Cards", "tags": [1]},
@@ -335,6 +340,7 @@
       {"name": "GNY07D.cpp", "fname": "Decoding", "tags": [8]},
       {"name": "GNY07E.cpp", "fname": "Flipping Burned Pancakes", "tags": [5, 15, 21]},
       {"name": "GOC11A.cpp", "fname": "Appending String", "tags": [5]},
+      {"name": "GONE.cpp", "fname": "G-One Numbers", "tags": [1, 2, 3]},
       {"name": "GSS1.cpp", "fname": "Can you answer these queries I", "tags": [7, 9, 11]},
       {"name": "GSS3.cpp", "fname": "Can you answer these queries III", "tags": [7, 9, 11]},
       {"name": "GSS4.cpp", "fname": "Can you answer these queries IV", "tags": [7, 9, 11]},
@@ -342,7 +348,7 @@
       {"name": "HANGOVER.cpp", "fname": "Hangover", "tags": [1, 24]},
       {"name": "HAROWS.cpp", "fname": "A - Crazy Rows", "tags": [0]},
       {"name": "HASHIT.cpp", "fname": "Hash it!", "tags": [7, 8, 27]},
-      {"name": "HMRO.cpp", "fname": "Help the Military Recruitment Office!", "tags": [7, 18]},
+      {"name": "HMRO.cpp", "fname": "Help the Military Recruitment Office!", "tags": [7, 32]},
       {"name": "IITKWPCA.cpp", "fname": "Niceness of the string", "tags": [18, 23]},
       {"name": "IITKWPCO.cpp", "fname": "Create Collections", "tags": [0]},
       {"name": "IMAGE.cpp", "fname": "Image Perimeters", "tags": [4, 12]},
@@ -371,12 +377,14 @@
       {"name": "MONKK.cpp", "fname": "Monkey King", "tags": [3]},
       {"name": "MOZPWS.cpp", "fname": "Playing With Subarray", "tags": [9, 11, 15]},
       {"name": "MSCHED.cpp", "fname": "Milk Scheduling", "tags": [21]},
+      {"name": "MSTRING.cpp", "fname": "String problem", "tags": [3, 14]},
       {"name": "NABILISU.cpp", "fname": "Billing Issue", "tags": [0]},
       {"name": "NAJPF.cpp", "fname": "Pattern Find", "tags": [23]},
       {"name": "NICEBTRE.cpp", "fname": "Nice Binary Trees", "tags": [9, 12]},
       {"name": "NINJA2.cpp", "fname": "PATHETIC STRINGS", "tags": [21, 23]},
       {"name": "NINJA7.cpp", "fname": "TWO SEQUENCES PROBLEM", "tags": [6, 21]},
       {"name": "NITK06.cpp", "fname": "MODIFY SEQUENCE", "tags": [0, 22]},
+      {"name": "NITTROAD.cpp", "fname": "Roads of NITT", "tags": [9, 32]},
       {"name": "NNUM.cpp", "fname": "One of the Simpsons symbols", "tags": [1]},
       {"name": "NOCHANGE.cpp", "fname": "No Change", "tags": [3]},
       {"name": "NOTATRI.cpp", "fname": "Not a Triangle", "tags": [1, 2, 24]},
@@ -405,6 +413,7 @@
       {"name": "RAIN3.cpp", "fname": "Rain", "tags": [24]},
       {"name": "RANDG.cpp", "fname": "Red And Green", "tags": [0, 22]},
       {"name": "RANGESUM.cpp", "fname": "Range Sum", "tags": [0]},
+      {"name": "REAYZCODETST.cpp", "fname": "Coding Test", "tags": [27]},
       {"name": "REDRONESIA.cpp", "fname": "Counting Words", "tags": [2, 3]},
       {"name": "REPROAD.cpp", "fname": "Repair road", "tags": [15, 25]},
       {"name": "ROADNET.cpp", "fname": "Road net", "tags": [4, 17, 25]},
@@ -419,7 +428,7 @@
       {"name": "SHPATH.cpp", "fname": "The Shortest Path", "tags": [4, 7, 13, 19, 26]},
       {"name": "SIGNPOST.cpp", "fname": "Signpost reading", "tags": [8, 23]},
       {"name": "SMILEY1807.cpp", "fname": "1807", "tags": [3, 14]},
-      {"name": "SOCNETC.cpp", "fname": "Social Network Community", "tags": [7, 18]},
+      {"name": "SOCNETC.cpp", "fname": "Social Network Community", "tags": [7, 32]},
       {"name": "SPCU.cpp", "fname": "Gopu and Validity of Arrangement", "tags": [0]},
       {"name": "SSHUFFLE.cpp", "fname": "String Shuffle", "tags": [2, 3]},
       {"name": "STAVATAR.cpp", "fname": "The Last String Bender", "tags": [0, 23]},
@@ -439,6 +448,7 @@
       {"name": "TRIP.cpp", "fname": "Trip", "tags": [2, 3, 14, 23]},
       {"name": "TRITILE.cpp", "fname": "Triangle Tiling", "tags": [0]},
       {"name": "TRT.cpp", "fname": "Treats for the Cows", "tags": [3]},
+      {"name": "TTRGRAPH.cpp", "fname": "Tetrahedrons in the country", "tags": [4, 17]},
       {"name": "TWENDS.cpp", "fname": "Two Ends", "tags": [3, 21]},
       {"name": "UCBINTB.cpp", "fname": "Car Game", "tags": [8, 23]},
       {"name": "UCBINTG.cpp", "fname": "Archipelago", "tags": [4, 5, 12]},
@@ -450,6 +460,7 @@
       {"name": "URJC2_A.cpp", "fname": "TV Schedule", "tags": [8]},
       {"name": "URJC2_E.cpp", "fname": "Stressful Activities", "tags": [0]},
       {"name": "VACATION.cpp", "fname": "Vacation Planning", "tags": [4, 26]},
+      {"name": "VECTAR10.cpp", "fname": "Card Game", "tags": [0]},
       {"name": "VISIBLEBOX.cpp", "fname": "Decreasing Number of Visible Box", "tags": [21]},
       {"name": "VMILI.cpp", "fname": "Military Story", "tags": [16, 29]},
       {"name": "WOWSUBSTR.cpp", "fname": "Counting WOW-Substrings", "tags": [1, 3]},
@@ -475,13 +486,12 @@
   load(pool);
   $(".tags" ).change(function () {
     var me = $(this).val();
+    $(":checkbox[value='" + me + "']").prop("checked", $(this).is(":checked"));
     if ($(this).is(":checked")) {
-      $(":checkbox[value='" + me + "']").prop("checked", true);
       for (i in container[me]) {
         pool.add(container[me][i]);
       }
     } else {
-      $(":checkbox[value='" + me + "']").prop("checked", false);
       for (i in container[me]) {
         pool.delete(container[me][i]);
       }
