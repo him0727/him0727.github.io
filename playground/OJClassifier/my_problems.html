@@ -127,6 +127,7 @@
 <div class="content">
   <div id="left-menu">
     <ul>
+      <li>KTRANS - K-transfter journey</li>
       <li>MACHCOOL2 - Machine Cooling II</li>
       <li>MACHCOOL - Machine Cooling</li>
       <li>TLPNGEM - Teleporters and Gems</li>
@@ -143,6 +144,20 @@
   <div id="right-content">
   </div>
   <div style="display: none;">
+  <div id="KTRANS">
+  <div class="constraint">
+    Problem statement: <a href="https://www.spoj.com/problems/KTRANS/" target="_blank">Link</a> | 
+    Time: 0.4s per test file | 
+    Source: 5000B | 
+    Memory: 1536MB | 
+    Languages: ALL
+  </div>
+  <hr />
+  We can view the shortest travel time as the shortest weighted path. Then this problem is clearly all-pairs constrained shortest path problem, the true way to go is to use a variant of Floyd-Warshall algorithm.
+  <h3>Approach 1: Variant of Floyd-Warshall algorithm(<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/KTRANS.cpp" target="_blank">Solution Link</a>)</h3>
+  In this problem we have two constraints: the maximum number of edges on a path must not exceed K, and the amount of incoming accumulated flow for each directly connected pair of nodes is restricted. Due to the second constraint, the following shortest path property is not necessarily true: A subpath of a shortest path is a shortest path. Given a directed graph G = (V, E) with weight W for each edge e &isin; E and the second constraint L for each vertex v &isin; V, where V donates cities, E donates flights and W donates travel time. If a shortest path P(u, v) with at most 3 edges passes through (u - v<sub>2</sub> - v<sub>3</sub> - v), P(v<sub>2</sub>, v) can be (v<sub>2</sub> - v), if δ(u, v<sub>2</sub>) &gt; L(v<sub>2</sub>, v) and δ(v<sub>2</sub>, v<sub>3</sub>) + δ(v<sub>3</sub>, v) &gt; δ(v<sub>2</sub>, v). Therefore, the resulting δ(u, v) may not necessarily be δ(u, k) + δ(k, v) for arbitrary k. That is why we should not raise the distance matrix into the power of K using binary exponention in O(log K) and combine the results together. Instead we should find the shortest path by adding one more edge to the current path every time, to make sure that  &sum;<sub>i=1</sub><sup>|P(u, k)|</sup> W(P(u, k)<sub>i - 1</sub>, P(u, k)<sub>i</sub>) does not exceed L(k, v). If it does, find the second best path from k to v.<br /><br />
+  We are going to create two distance matrix D<sub>1</sub> and D<sub>2</sub>, D<sub>1</sub> for the results of length of K - 1 and D<sub>2</sub> for the results of length of K. Filling &infin; for all pairs of vertices and filling 0 if u = v. Then, we will start finding the shortest path for each (u, v) with length from 1, 2, incrementally increase to length of K using previous K - 1 results in O(K). In each iteration, by relaxing all the edges (u, v) for each vertex, the computed shortest travel time from current vertex to v is tested whether it can be improved by passing through P(current vertex, u) plus one more edge (u, v), while satisfying the constraint L(u, v). So, during the relaxation process, we iterative over all vertices, considering current vertex n as an intermediate vertex, if D<sub>1</sub>(n, u) &ne; &infin; and D<sub>1</sub>(n, u) &le; L(u, v), D<sub>2</sub>(n, v) = min(D<sub>2</sub>(n, v), D<sub>1</sub>(n, u) + W(u, v)). After K relaxations, we have to swap D1<sub>1</sub> and D<sub>2</sub> and let D<sub>2</sub> = D<sub>1</sub> because we are using the results of length of K - 1 to update the current results of length of K, directly using D<sub>2</sub> as distance matrix breaks both constraints. Finally, since D<sub>1</sub> and D<sub>2</sub> are swapped during the end of each iteration, D<sub>1</sub> is our answer and remember to replace &infin; with -1. Or we can define &infin; as -1, but in this case, we have to modify the condition check: D<sub>2</sub>(n, v) will only be updated when D<sub>2</sub>(n, v) = -1 or D<sub>(n, v)</sub> &gt; D<sub>1</sub>(n, u) + W(u, v), following the order of condition check. The algorithm can be run in O(K * |E| * |V|), which is (|V| - 1) * |V| * (|V| - 1) * |V| = 6002500 iterations in the worse case.
+  </div>
   <div id="MACHCOOL2">
   <div class="constraint">
     Problem statement: <a href="https://www.spoj.com/problems/MACHCOOL2/" target="_blank">Link</a> | 
