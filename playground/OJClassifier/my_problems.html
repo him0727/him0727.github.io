@@ -61,8 +61,9 @@
     cursor: hand;
   }
   .constraint {
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
+    font-weight: bold;
     margin: 0 0 5px 0;
     line-height: 10px;
   }
@@ -72,8 +73,10 @@
   #right-content {
     width: 75%;
     text-align: justify;
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    font-family: "Candara";
   }
   #left-menu ul {
     padding: 0;
@@ -127,6 +130,7 @@
 <div class="content">
   <div id="left-menu">
     <ul>
+      <li>ACRYM - Acronym</li>
       <li>KTRANS - K-transfer journey</li>
       <li>MACHCOOL2 - Machine Cooling II</li>
       <li>MACHCOOL - Machine Cooling</li>
@@ -144,6 +148,33 @@
   <div id="right-content">
   </div>
   <div style="display: none;">
+  <div id="ACRYM">
+  <div class="constraint">
+    Problem statement: <a href="https://www.spoj.com/problems/ACRYM/" target="_blank">Link</a> | 
+    Time: 0.8s per test file | 
+    Source: 5000B | 
+    Memory: 1536MB | 
+    Languages: ALL
+  </div>
+  <hr />
+  Let's model the problem as a tree: We have a dummy root at depth 0. At depth i, all siblings represet all prefixes of W<sub>i</sub>, and each has C child nodes where C is the number of prefixes of W<sub>i + 1</sub>, which equals |W<sub>i + 1</sub>|. For conjunction and adposition, the empty string is included. From the tree, we get every combination of prefixes of each word. To reduce the number of nodes, check if the current combination matches the corresponding prefix of A. So the solution is to count the number of path reaching any leaf at depth N from the root. But this is inefficient due to duplicate computation, and in the worst case, we have 1 + &Pi;<sub>i=1</sub><sup>N</sup>|W<sub>i</sub>| nodes.
+  <h3>Approach 1: Dynamic Programming(<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/ACRYM.cpp" target="_blank">Solution Link</a>)</h3>
+  To iteratively solve this problem without recursion, let's define f(x) as the number of possible combinations of making A of length x using the prefixes from W<sub>1</sub> to W<sub>i - 1</sub>. Donate f '(x) as the same target function but using the prefixes from W<sub>1</sub> to W<sub>i</sub>. Obviously, we have to make use of the result of f(x) in order to get f '(x) because the order of words is fixed. For W<sub>1</sub>, f(0) to f(j) is 1 where j is the length of longest common prefix - 1 (index starts from 0), otherwise 0. From this observation, we can see that in the initial f(x), the value is either 1 or 0, and all '1's will be on the left side. For W<sub>2</sub>, we will consider all prefixes of the word. For each prefix, we will also consider all prefixes of A. Let L be the length of current prefix - 1 of W<sub>2</sub>, G be the length of current prefix - 1 of A. Now we have two cases: W<sub>2</sub> is conjunction or adposition, or it is not. If it is, intially f '(x) = f(x) because we can simply skip the word. If not, as the second case, f '(x) = 0 for all x. Now we have to check whether W<sub>2</sub>[0 ... L] is the suffix of A[G - L ... G]. But it only means that W<sub>2</sub> is a valid candidate, it does not mean A[0 ... G] is contiguous considering any combination of prefix of W<sub>1</sub> and W<sub>2</sub>. That is, A[0 ... G - L - 1] must be the prefix of W<sub>1</sub>. Luckily, f(x) already provides the answer considering the first word to the previous word following their order. Now we get the transfer state of f '(x): 
+  <ul>
+  <li>For each word W<sub>i</sub>, where i &gt; 1: <br />
+  - f '(x) = f(x), for all x, if W<sub>i</sub> is conjuction or adposition<br />
+  - f '(x) = 0, for all x, otherwise
+  </li>
+  <li>For each value of L and each value of G, where 0 &le; L &lt; min(|W<sub>i</sub>|, |A|) and L &lt; G &lt; |A|: <br />
+  - f '(G) = f '(G) + f(G - L - 1), if f(G - L - 1) &gt; 0 and W<sub>i</sub>[0 ... L] equals A[G - L ... G]<br />
+  </li>
+  <li>Make use of f '(x) to calculate the next state: <br />
+  - f(x) = f '(x)
+  </li>
+  </ul>
+  By doing the above procedure for W<sub>2</sub> to W<sub>N</sub>, our final answer is f(|A| - 1). There are two optimizations to speed it up: First, we should check whether f(G - L - 1) &gt; 0, and then check if the current prefix of W<sub>i</sub> is part of A's suffix. This is because substring is O(N) which slowers our algorithm N times. If we know the result is not contiguous, we don't have to check the substring. Second, if f '(x) equals 0 for all x, which means the result is no longer contiguous, we can immediately determine the answer is 0 without trying the remaining words. Everything is bounded by |A|, so the time complexity is O(N * |A|<sup>2</sup>). In practice, this algorithm solves all test files very fast in just 0.07s on SPOJ's cluster.<br /><br />
+  Actually, we can think the problem like that: for each word, it forms a set with |W<sub>i</sub>| elements, containing all prefixes of the word. For conjunction or adposition, we have one more element which is the empty string. The value is their length. Now we have N sets, and a bag with |A| capacity, we want to select one element from each set, such that bag value is exactly |A|. But one more constraint is added: the selected element must be part of the suffix of current A. Therefore, this problem is a variant of multiple-choice knapsack problem.
+  </div>
   <div id="KTRANS">
   <div class="constraint">
     Problem statement: <a href="https://www.spoj.com/problems/KTRANS/" target="_blank">Link</a> | 
@@ -253,7 +284,7 @@
   <li>f(r, 1) = R<sub>j, 1</sub>{W, D} * 2 + R<sub>j, 1</sub>{H, D} * 2 + R<sub>j, 1</sub>{W, H}.<br />
   For the first gift, f(r, 1) is simply the total surface area except the bottom of that gift with r dimensions.</li>
   <li>f(r, i) = max(f(r, i - 1)) + R<sub>j, i</sub>{W, D} * 2 + R<sub>j, i</sub>{W, H} + DD + DH, where i &gt; 1.</li>
-  For the i-th gift, we only place this after the most optimal combination from 1 to i - 1 gift so we have to find out max(f(r, i - 1)) which takes 6 times computation. Note that if H and D are both less than previous box's H and D, the total area of {H, D} is not affected. Let DD and DH be the vertical difference and horizontal area difference of {H<sub>i</sub>, D<sub>i</sub>} and {H<sub>i - 1</sub>, D<sub>i - 1</sub>} respectively. If D<sub>i</sub> &gt; D<sub>i - 1</sub> or H<sub>i</sub> &gt; H<sub>i - 1</sub>, DD or DH is simply the double of the extra area of {H, D}. If D<sub>i</sub> &gt; D<sub>i - 1</sub> and H<sub>i</sub> &gt; H<sub>i - 1</sub>, we have to minus the overlapping area of DD and DH and mulitply the sum of DD and DH by 2 as well. Otherwises, DD = 0 and DH = 0.</li>
+  For the i-th gift, we only place this after the most optimal combination from 1 to i - 1 gift so we have to find out max(f(r, i - 1)) which takes 6 times computation. Note that if H and D are both less than previous box's H and D, the total area of {H, D} is not affected. Let DD and DH be the vertical difference and horizontal area difference of {H<sub>i</sub>, D<sub>i</sub>} and {H<sub>i - 1</sub>, D<sub>i - 1</sub>} respectively. If D<sub>i</sub> &gt; D<sub>i - 1</sub> or H<sub>i</sub> &gt; H<sub>i - 1</sub>, DD or DH is simply the double of the extra area of {H, D}. If D<sub>i</sub> &gt; D<sub>i - 1</sub> and H<sub>i</sub> &gt; H<sub>i - 1</sub>, we have to minus the overlapping area of DD and DH and mulitply the sum of DD and DH by 2 as well. Otherwise, DD = 0 and DH = 0.</li>
   </ul>
   At the end, we will have 6 different answers, representing the maximum of area of 1 to n - 1 th gift plus the n-th gift with R<sub>j, n</sub> dimensions. Of course, we choose the largest one. Our answer is then be max(f(r, n)). Except the first gift, the computation for i-th gift takes 36 times to combine f(r, i - 1) and 6 possible rotations, hence O(36 * (N - 1) + 6) for all gift boxes in total. The overall time complexity becomes O(N).
   </div>
@@ -283,7 +314,7 @@
   <hr />
   I wrote this problem to commemorate the 32-nd anniversary of the Chernobyl nuclear disaster, and my second visit to Chernobyl in May, 2018 since August, 2016. Okay, let's start the solution.
   <h3>Approach 1: Dynamic programming with bitmasking (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/PRIPYAT.cpp" target="_blank">Solution Link</a>)</h3>
-  Firstly, we have to select some places to visit so that the total EXC is maximized and the VT and RL are less than or equal to the given limit. This is a classical 3D 0/1 knapsack problem, so we can use dynamic programming (DP). We define a function f1(x, y, z) as the maximum EXC we can get, in which we consider places from the first place to x-th place, by not exceeding y unit of VT and z amount of TL. Obviously, when any of x, y, z is 0, f1(x, y, z) is 0. For x &ge; 1, we only consider x-th place when VT<sub>x</sub> &le; y and RL<sub>x</sub> &le; z, hence we get f1(x, y, z) = max(f1(x - 1, y, z), f1(x - 1, y - VT<sub>x</sub>, z - RL<sub>x</sub>) + EXC<sub>x</sub>). Otherwises, it is impossible to accept VT<sub>x</sub>, RK<sub>x</sub>, or both, so we don't visit x-th place and f1(x, y, z) = f1(x - 1, y, z). Now, f1(N, MVT, TRL) is the maximum EXC we can get. We can know what places are selected by iterating over all f1's results backwards. Since the f1(x, y, z) is in increasing order, we start from f1(N, MVT, TRL), x-th place is selected when f1(x, y, z) &gt; f1(x - 1, y, z). After each selection, we set y to y - VT<sub>x</sub> and z to z - RL<sub>x</sub>. The iteration stops when any x, y, z is 0, which means it is impossible for all remaining places to meet all given limits. Note that RL is a set of real numbers with at most 2 digits after the decimal point, we can multiply RL and TRL by 100 so that the whole part can be solved by integer linear programming in O(N * MVT * TRL * 100).<br /><br />
+  Firstly, we have to select some places to visit so that the total EXC is maximized and the VT and RL are less than or equal to the given limit. This is a classical 3D 0/1 knapsack problem, so we can use dynamic programming (DP). We define a function f1(x, y, z) as the maximum EXC we can get, in which we consider places from the first place to x-th place, by not exceeding y unit of VT and z amount of TL. Obviously, when any of x, y, z is 0, f1(x, y, z) is 0. For x &ge; 1, we only consider x-th place when VT<sub>x</sub> &le; y and RL<sub>x</sub> &le; z, hence we get f1(x, y, z) = max(f1(x - 1, y, z), f1(x - 1, y - VT<sub>x</sub>, z - RL<sub>x</sub>) + EXC<sub>x</sub>). Otherwise, it is impossible to accept VT<sub>x</sub>, RK<sub>x</sub>, or both, so we don't visit x-th place and f1(x, y, z) = f1(x - 1, y, z). Now, f1(N, MVT, TRL) is the maximum EXC we can get. We can know what places are selected by iterating over all f1's results backwards. Since the f1(x, y, z) is in increasing order, we start from f1(N, MVT, TRL), x-th place is selected when f1(x, y, z) &gt; f1(x - 1, y, z). After each selection, we set y to y - VT<sub>x</sub> and z to z - RL<sub>x</sub>. The iteration stops when any x, y, z is 0, which means it is impossible for all remaining places to meet all given limits. Note that RL is a set of real numbers with at most 2 digits after the decimal point, we can multiply RL and TRL by 100 so that the whole part can be solved by integer linear programming in O(N * MVT * TRL * 100).<br /><br />
   Now we know what places are selected, and have to find out the shortest distance from the starting point to visit all selected places without duplicate visit. The first step is to set all unselected places in the matrix to a barrier. Assume that K places are selected, as units are in equal distance, we will do a breadth first search (BFS) K + 1 times (because the starting point is included) at the location of i-th selected place to find out the shortest distance from i-th place to other places. Let the answer be DIST<sub>K, R, C</sub>. Note that when performing BFS, we must not put barriers and selected places into the queue (but we do calculate the shortest distance of that cell) because we are not allowed to visit the selected places twice or more. So, if the target is blocked, the distance will be INF (number larger than possible answer). This pre-calculation done in O(R * C * (K + 1)) gives us important information to optimize the result.<br /><br />
   Then, we can enumerate all possibilities with the help of DP and bitmasking. Integer can be represented by a set of bits which is either 1 or 0, which can be used in representing the state of a place. From the right, if the i-th bit is set, the i-th place is visited. Therefore, the bound of masks is 2<sup>K + 1</sup> - 1. We again define a function f2(x, y) as the shortest distance from x-th place to visit all the selected places by already visiting y in mask places. So, we only consider those places where haven't been to. From that, the DP state transition is as follows: for each place, if (y & (1 &lt;&lt; i)) is 0, f2(x, y) = min(f2(i, (y | (1 &lt;&lt; i))) + DIST<sub>x, R<sub>i</sub>, C<sub>i</sub></sub>). To avoid overlapping computation, in every recursion we can return the result immediately if f2(i, (y | (1 &lt;&lt; i)) is memoized already. Also, one possible sequence will stop calling f2 if all bits are set, which means all places are visited and equal to bound. We will start from the starting point and none of the place is visited except the starting point, so we initially call f2(0, 1). Remember that if one point is inaccessible from x-th place, the distance matrix of that cell is INF. It means that if the result obtained by f2(0, 1) &ge; INF, it is impossible to visit all selected places without duplicate visit from the starting point.<br /><br />
   With the help of DP and bitmasking, the time and space complexity is reduced, and the problem can still be solved accurately in reasonable time, which is O((K + 1) * (N * MVT * TRL * 100 + R * C + (K + 1)) * 2<sup>K + 1</sup>).
@@ -300,7 +331,7 @@
   The binary tree constructed from parent array may be either balanced, unbalanced, complete or full. We can count the number of potential isosceles triangles (PIT) by one node's parent and child.
   <h3>Approach 1: Depth first search (DFS) with memoization (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/TRIBT.cpp" target="_blank">Solution Link</a>)</h3>
   Two paths starting from a parent node or root form a triangle. To meet the isosceles property, two paths must have the same length, therefore the number of PIT formed by these two paths is simply min(TO_CHILD_PATH<sub>left</sub>, TO_CHILD_PATH<sub>right</sub>). Please note that we must also check the min(TO_PARENT_PATH<sub>left</sub>, TO_CHILD_PATH<sub>right</sub>) and min(TO_PARENT_PATH<sub>right</sub>, TO_CHILD_PATH<sub>left</sub>) because the triangle can be in any direction. But in binary tree, it can only go left, go right or be upward. Therefore, the answer is the sum of these three values. To implement this, we can do a recursive DFS from the root. <br /><br />
-  Let LT<sub>p</sub> be the left child of node p and RT<sub>p</sub> be the right child, if any, otherwises its value is -1. Let LT_CHILD<sub>p</sub> and RT_CHILD<sub>p</sub> be the length of path from node p towards its left and right leaf, while LT_PARENT<sub>p</sub> and RT_PARENT<sub>p</sub> be the length of path from node p to its parent. If one way is unconnected, the corresponding value is 0 (Like the root has no parent and leaf has no child). Our DFS firstly checks if the parent (initially it is root) has left child. If yes, it sets LT_PARENT<sub>LT<sub>p</sub></sub> to LT_PARENT<sub>p</sub> + 1, and call itself from LT<sub>p</sub>, and then set LT_CHILD<sub>p</sub> to LT_CHILD<sub>LT<sub>p</sub></sub> + 1. Do the same for the right child. We then have the three required values and simply add them to the answer.
+  Let LT<sub>p</sub> be the left child of node p and RT<sub>p</sub> be the right child, if any, otherwise its value is -1. Let LT_CHILD<sub>p</sub> and RT_CHILD<sub>p</sub> be the length of path from node p towards its left and right leaf, while LT_PARENT<sub>p</sub> and RT_PARENT<sub>p</sub> be the length of path from node p to its parent. If one way is unconnected, the corresponding value is 0 (Like the root has no parent and leaf has no child). Our DFS firstly checks if the parent (initially it is root) has left child. If yes, it sets LT_PARENT<sub>LT<sub>p</sub></sub> to LT_PARENT<sub>p</sub> + 1, and call itself from LT<sub>p</sub>, and then set LT_CHILD<sub>p</sub> to LT_CHILD<sub>LT<sub>p</sub></sub> + 1. Do the same for the right child. We then have the three required values and simply add them to the answer.
   </div>
   <div id="SMTOILET">
   <div class="constraint">
