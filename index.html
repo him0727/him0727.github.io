@@ -23,50 +23,52 @@
 </script>
 </head>
 <body>
-<div id="top">
-	<div class="navbar-fixed">
-		<nav>
-			<div class="nav-wrapper">
-				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons" style="color: black">menu</i></a>
-				<span id="title">HIM0727 .NET</span>
-				<ul class="right hide-on-med-and-down" id="nav-pc">
-				</ul>
-			</div>
-		</nav>
-		<ul class="side-nav" id="nav-mobile">
-		</ul>
-	</div>
-	<div class="row" id="topInfo">
+  <div id="top">
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons" style="color: black">menu</i></a>
+          <span id="title">HIM0727 .NET</span>
+          <ul class="right hide-on-med-and-down" id="nav-pc">
+          </ul>
+        </div>
+      </nav>
+      <ul class="side-nav" id="nav-mobile">
+      </ul>
+    </div>
+    <div class="row" id="topInfo">
       <img src="images/icon.JPG" alt="ICON" class="icon circle responsive-img" />
       <h5>HIM0727</h5>
-	  <i>Nobody / Coder / Urbexer</i><br />
+      <i>Nobody / Coder / Urbexer</i><br />
     </div>
-</div>
-<br />
-<div class="container">
-	<div class="row">
-		<div class="col s12">
-			<div id="content" width="100%"></div>
-		</div>
-	<div>
-</div>
-<div class="center-align">&copy; <script>document.write(new Date().getFullYear())</script> HIM0727 .NET</div>
-<script src="js/common.js"></script>
-<script>
-var links = loadContent("links");
-for (var i in links) {
-	_ = links[i];
-	if (_.status != "Y") continue;
-	$("#topInfo").append("<a href='{0}' target='_blank'><img src='{1}' alt='{2}' class='contact'></a>".format(_.url, _.icon, _.name));
-}
-var menu = loadContent("menu");
-for (var i in menu) {
-	_ = menu[i];
-	if (_.status != "Y") continue;
-	$("#nav-pc").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
-	$("#nav-mobile").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
-}
-$("#content").load("main.html");
-</script>
+  </div>
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div id="content" width="100%"></div>
+      </div>
+    <div>
+  </div>
+  <div class="center-align">&copy; <script>document.write(new Date().getFullYear())</script> HIM0727 .NET</div>
+  <script src="js/common.js"></script>
+  <script>
+  $(document).ready(function() {
+    let links = loadContent("links");
+    for (let i in links) {
+      _ = links[i];
+      if (!_.status) continue;
+      $("#topInfo").append("<a href='{0}' target='_blank'><img src='{1}' alt='{2}' class='contact'></a>".format(_.url, _.icon, _.name));
+    }
+    let menu = loadContent("menu");
+    for (let i in menu) {
+      _ = menu[i];
+      if (!_.status) continue;
+      $("#nav-pc").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
+      $("#nav-mobile").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
+    }
+    $("#content").load("main.html");
+  });
+  </script>
 </body>
 </html>

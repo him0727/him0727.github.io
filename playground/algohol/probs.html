@@ -1,0 +1,352 @@
+<html>
+<head>
+<title>My problems :: Algohol - Him0727 .NET</title>
+<meta charset="utf-8">
+<meta name="author" content="CHAN TAK HIM, him0727">
+<meta name="description" content="Aloghol, a website about data structure and algorithm, powered by HIM0727 .NET" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<link rel="stylesheet" href="styles/global.css">
+<link rel="stylesheet" href="styles/probs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-11490216-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-11490216-2');
+</script>
+</head>
+<body>
+  <nav class="content">
+    <span id="nav-left"></span>
+    <span id="nav-right"></span>
+  </nav>
+  <div class="content" style="background-color: #EFF1FA;">
+    <span style="color: #36AD16;">
+      <svg class="bi bi-emoji-laughing" style="margin-top: 10px;" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path fill-rule="evenodd" d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5z"/>
+        <path d="M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
+      </svg>
+       - I am pleased to announce that my problem "LNTILING - Long Tiling" was selected as one of the ten problems in <a href="https://www.bubblecup.org/CompetitorsCorner/Problems" target="_blank">Round 2, Bubble Cup 13 (2020)</a>.
+    </span>
+  </div>
+  <div class="content">
+    <div id="left-menu" style="text-align: left">
+      <ul>
+        <li>ACRYM - Acronym</li>
+        <li>KTRANS - K-transfer journey</li>
+        <li>MACHCOOL2 - Machine Cooling II</li>
+        <li>MACHCOOL - Machine Cooling</li>
+        <li>TLPNGEM - Teleporters and Gems</li>
+        <li>LNTILING - Long Tiling</li>
+        <li>GIFTARNG - Gift Arrangement</li>
+        <!--<li>PSHAPE - Plane Shapes Formation</li>-->
+        <!--<li>PRIPYAT - Pripyat</li>-->
+        <li>TRIBT - Triangle on Binary Tree</li>
+        <li>SMTOILET - Smelly Toilets</li>
+        <li>MAPEXC - Map Exploration Cost</li>
+        <li>TRFPLN - Traffic Planning</li>
+      </ul>
+    </div>
+    <div id="right-content"></div>
+    <div style="display: none;">
+      <div id="ACRYM">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/ACRYM/" target="_blank">Link</a> | 
+          Time: 0.8s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Dynamic Programming</span><span class="tag">Combinatorics</span><span class="tag">String</span><span class="tag">Prefix & Suffix</span><span class="tag">Subquence</span>
+        </div>
+        <hr />
+        Let's model the problem as a tree: We have a dummy root at depth 0. At depth i, all siblings represet all prefixes of W<sub>i</sub>, and each has C child nodes where C is the number of prefixes of W<sub>i + 1</sub>, which equals |W<sub>i + 1</sub>|. For conjunction and adposition, the empty string is included. From the tree, we get every combination of prefixes of each word. To reduce the number of nodes, check if the current combination matches the corresponding prefix of A. So the solution is to count the number of path reaching any leaf at depth N from the root. But this is inefficient due to duplicate computation, and in the worst case, we have 1 + &Pi;<sub>i=1</sub><sup>N</sup>|W<sub>i</sub>| nodes.
+        <h3>Approach 1: Dynamic Programming(<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/ACRYM.cpp" target="_blank">Solution Link</a>)</h3>
+        To iteratively solve this problem without recursion, let's define f(x) as the number of possible combinations of making A of length x using the prefixes from W<sub>1</sub> to W<sub>i - 1</sub>. Donate f '(x) as the same target function but using the prefixes from W<sub>1</sub> to W<sub>i</sub>. Obviously, we have to make use of the result of f(x) in order to get f '(x) because the order of words is fixed. For W<sub>1</sub>, f(0) to f(j) is 1 where j is the length of longest common prefix - 1 (index starts from 0), otherwise 0. From this observation, we can see that in the initial f(x), the value is either 1 or 0, and all '1's will be on the left side. For W<sub>2</sub>, we will consider all prefixes of the word. For each prefix, we will also consider all prefixes of A. Let L be the length of current prefix - 1 of W<sub>2</sub>, G be the length of current prefix - 1 of A. Now we have two cases: W<sub>2</sub> is conjunction or adposition, or it is not. If it is, intially f '(x) = f(x) because we can simply skip the word. If not, as the second case, f '(x) = 0 for all x. Now we have to check whether W<sub>2</sub>[0 ... L] is the suffix of A[G - L ... G]. But it only means that W<sub>2</sub> is a valid candidate, it does not mean A[0 ... G] is contiguous considering any combination of prefix of W<sub>1</sub> and W<sub>2</sub>. That is, A[0 ... G - L - 1] must be the prefix of W<sub>1</sub>. Luckily, f(x) already provides the answer considering the first word to the previous word following their order. Now we get the transfer state of f '(x): 
+        <ul>
+          <li>For each word W<sub>i</sub>, where i &gt; 1: <br />
+          - f '(x) = f(x), for all x, if W<sub>i</sub> is conjuction or adposition<br />
+          - f '(x) = 0, for all x, otherwise
+          </li>
+          <li>For each value of L and each value of G, where 0 &le; L &lt; min(|W<sub>i</sub>|, |A|) and L &lt; G &lt; |A|: <br />
+          - f '(G) = f '(G) + f(G - L - 1), if f(G - L - 1) &gt; 0 and W<sub>i</sub>[0 ... L] equals A[G - L ... G]<br />
+          </li>
+          <li>Make use of f '(x) to calculate the next state: <br />
+          - f(x) = f '(x)
+          </li>
+        </ul>
+        By doing the above procedure for W<sub>2</sub> to W<sub>N</sub>, our final answer is f(|A| - 1). There are two optimizations to speed it up: First, we should check whether f(G - L - 1) &gt; 0, and then check if the current prefix of W<sub>i</sub> is part of A's suffix. This is because substring is O(N) which slowers our algorithm N times. If we know the result is not contiguous, we don't have to check the substring. Second, if f '(x) equals 0 for all x, which means the result is no longer contiguous, we can immediately determine the answer is 0 without trying the remaining words. Everything is bounded by |A|, so the time complexity is O(N * |A|<sup>2</sup>). In practice, this algorithm solves all test files very fast in just 0.07s on SPOJ's cluster.<br /><br />
+        Actually, we can think the problem like that: for each word, it forms a set with |W<sub>i</sub>| elements, containing all prefixes of the word. For conjunction or adposition, we have one more element which is the empty string. The value is their length. Now we have N sets, and a bag with |A| capacity, we want to select one element from each set, such that bag value is exactly |A|. But one more constraint is added: the selected element must be part of the suffix of current A. Therefore, this problem is a variant of multiple-choice knapsack problem.
+      </div>
+      <div id="KTRANS">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/KTRANS/" target="_blank">Link</a> | 
+          Time: 0.4s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Dynamic Programming</span><span class="tag">Shortest Path</span>
+        </div>
+        <hr />
+        We can view the shortest travel time as the shortest weighted path. Then this problem is clearly all-pairs constrained shortest path problem, the true way to go is to use a variant of Floyd-Warshall algorithm.
+        <h3>Approach 1: Variant of Floyd-Warshall algorithm(<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/KTRANS.cpp" target="_blank">Solution Link</a>)</h3>
+        In this problem we have two constraints: the maximum number of edges on a path must not exceed K, and the amount of incoming accumulated flow for each directly connected pair of nodes is restricted. Due to the second constraint, the following shortest path property is not necessarily true: A subpath of a shortest path is a shortest path. Given a directed graph G = (V, E) with weight W for each edge e &isin; E and the second constraint L for each vertex v &isin; V, where V donates cities, E donates flights and W donates travel time. If a shortest path P(u, v) with at most 3 edges passes through (u - v<sub>2</sub> - v<sub>3</sub> - v), P(v<sub>2</sub>, v) can be (v<sub>2</sub> - v), if δ(u, v<sub>2</sub>) &gt; L(v<sub>2</sub>, v) and δ(v<sub>2</sub>, v<sub>3</sub>) + δ(v<sub>3</sub>, v) &gt; δ(v<sub>2</sub>, v). Therefore, the resulting δ(u, v) may not necessarily be δ(u, k) + δ(k, v) for arbitrary k. That is why we should not raise the distance matrix into the power of K using binary exponention in O(log K) and combine the results together. Instead we should find the shortest path by adding one more edge to the current path every time, to make sure that  &sum;<sub>i=1</sub><sup>|P(u, k)|</sup> W(P(u, k)<sub>i - 1</sub>, P(u, k)<sub>i</sub>) does not exceed L(k, v). If it does, find the second best path from k to v.<br /><br />
+        We are going to create two distance matrix D<sub>1</sub> and D<sub>2</sub>, D<sub>1</sub> for the results of length of K - 1 and D<sub>2</sub> for the results of length of K. Filling &infin; for all pairs of vertices and filling 0 if u = v. Then, we will start finding the shortest path for each (u, v) with length from 1, 2, incrementally increase to length of K using previous K - 1 results in O(K). In each iteration, by relaxing all the edges (u, v) for each vertex, the computed shortest travel time from current vertex to v is tested whether it can be improved by passing through P(current vertex, u) plus one more edge (u, v), while satisfying the constraint L(u, v). So, during the relaxation process, we iterative over all vertices, considering current vertex n as an intermediate vertex, if D<sub>1</sub>(n, u) &ne; &infin; and D<sub>1</sub>(n, u) &le; L(u, v), D<sub>2</sub>(n, v) = min(D<sub>2</sub>(n, v), D<sub>1</sub>(n, u) + W(u, v)). After K relaxations, we have to swap D1<sub>1</sub> and D<sub>2</sub> and let D<sub>2</sub> = D<sub>1</sub> because we are using the results of length of K - 1 to update the current results of length of K, directly using D<sub>2</sub> as distance matrix breaks both constraints. Finally, since D<sub>1</sub> and D<sub>2</sub> are swapped during the end of each iteration, D<sub>1</sub> is our answer and remember to replace &infin; with -1. Or we can define &infin; as -1, but in this case, we have to modify the condition check: D<sub>2</sub>(n, v) will only be updated when D<sub>2</sub>(n, v) = -1 or D<sub>(n, v)</sub> &gt; D<sub>1</sub>(n, u) + W(u, v), following the order of condition check. The algorithm can be run in O(K * |E| * |V|), which is (|V| - 1) * |V| * (|V| - 1) * |V| = 6002500 iterations in the worse case.
+      </div>
+      <div id="MACHCOOL2">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/MACHCOOL2/" target="_blank">Link</a> | 
+          Time: 0.5s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Heap</span><span class="tag">Graph</span><span class="tag">Matching</span><span class="tag">Greedy</span><span class="tag">Binary Search</span><span class="tag">Depth-first Search</span>
+        </div>
+        <hr />
+        The requirements of this problem are similar to MACHCOOL, except the tasks' duration and number of machines. Luckily, both can be solved by similar strategies: greedy paradigm or maximum matching in bipartite graph.
+        <h3>Approach 1: Min heap (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MACHCOOL2_1.cpp" target="_blank">Solution Link</a>)</h3>
+        Since a task must wait for the preceding task to complete before it can proceed, we are only interested in the sub task with longest duration for the i-th task which is max(D<sub>i, j</sub>). Let T be a pair of a particular task's start time and end time {START, END}, equivalent to {START<sub>i</sub>, START<sub>i</sub> + max(D<sub>i, j</sub>)}, and then sort all pairs in an ascending order in O(N * logN). We can divided the problem into two sub problems: Let M be the minimum number of machines we need, find out M and how to distribute them optimally. To answer these two questions, we will make use of a tree data structure called heap, that is, priority queue in C++. To answer the first question, of course we want one machine to deal with as many tasks as possible which forms a greedy insight. Therefore, we must assign T<sub>i</sub> to a machine as soon as possible if START<sub>i</sub> &ge; the end time of the latest task assigned to that machine. If not, we need a new machine to hold that task. By using min heap, looping through the sorted pairs, if the heap is not empty and START<sub>i</sub> &ge; the top of the heap (smallest end time), one of the machines can hold this task so let's remove the top element. Now the queue size is reduced by 1. We then add END<sub>i</sub> to the heap, and its size is added by 1. Both pop and push opertion done in O(log N), hence in total O(N logN). Finally, the size of the heap is the minimum number of machines we need.<br /><br />
+        To distribute them optimally, we make use of min heap again. Refer to the greedy approach mentioned in MACHCOOL (skip the induction here), first we consecutively distribute M machines as early as possible by pushing the first M tasks into the heap. For the remaining N - M tasks, we want to maximize the gap between START<sub>i</sub> and the end time of the latest assigned task of one of the machines. But it is too slow to try on all machines in O(M), since we use min heap, the top element is already the latest with earliest end time. That is, we don't even have to classify the machine explicitly and it is done in O(1). Looping through the remaining tasks, do pop and push in each iteraction, the answer is simply min(ans, START<sub>i</sub> - top of the heap). This can be done in O(N logN) as well, so the solution's time complexity is also O(N logN). 
+        <h3>Approach 2: Maximum bipartite matching (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MACHCOOL2_2.cpp" target="_blank">Solution Link</a>)</h3>
+        This problem can be modelled as a graph problem. Let G = (V, E) be a directed acyclic graph (DAG), where V are tasks and there is an edge E from V<sub>1</sub> to V<sub>2</sub> if and only if END<sub>V<sub>1</sub></sub> &le; START<sub>V<sub>2</sub></sub>. From the DAG, every node on any path can be distributed to a machine. There may many valid paths, if we want to find the minimum number of machines we need, we have to minimize the number of paths so that every node appears only once. That is, we want to maximize the ordered pair (u, v) where there is an edge from u to v and both cannot not be the first and second element more than once. This is equivalent to the minimum edge cover problem in a bipartite graph. Let L and R be two disjoint and independent sets, both include V in G, in other words, the number of tasks. Edges connecting from L to R are corresponding to E in G as well. This will form a bipartite graph. Finding the maximum matching in bipartite graph is a well known problem which can be done in O(|V|<sup>3</sup>) where |V| equals N which is the number of tasks, by using Hungarian algorithm with depth-first search. Obviously, the number of unmatched points (Maximum independent set) in L is the number of machines we need. Once we know the maximum matching, we can also get the minimum number of machines we need because maximum independent set = minimum edge cover = |V| - maximum matching in bipartite graph.<br /><br />
+        To get the maximum cooling time, we are going to do binary search. Let ANS be the answer, and now there is an edge E from V<sub>1</sub> to V<sub>2</sub> if and only if END<sub>V<sub>1</sub></sub> + ANS &le; START<sub>V<sub>2</sub></sub>. It is too slow to try every possible value. We know that ANS affects how G looks like. If ANS is larger, |E| and matchings become less, hence the number of machines increases, vice versa. Our target is to let median = M. It means we can use binary search between 0 and 86400. During each check, we construct G and draw an edge from u to v if and only if u + median &le; v. Actually, we don't have to construct the graph explicitly, instead we can let median be a global variable and change the condition check in depth-first search (DFS). The next step is just to find out the minimum edge cover in O(N<sup>3</sup>). We want the upper bound since we need to maximize the cooling time, if current matchings = M, we have to increase the median to make the result larger. If M &lt; current matchings, we want less |E| and matchings to make the result less. Finally, ANS is median. The whole problem can be solved in O(N<sup>3</sup> * log (86401)).
+      </div>
+      <div id="MACHCOOL">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/MACHCOOL/" target="_blank">Link</a> | 
+          Time: 0.3s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Graph</span><span class="tag">Matching</span><span class="tag">Greedy</span><span class="tag">Binary Search</span><span class="tag">Depth-first Search</span>
+        </div>
+        <hr />
+        This problem seems complicated because there are many ways to distribute machines optimally, but there is a straightforward solution with greedy insight.
+        <h3>Approach 1: Greedy paradigm (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MACHCOOL_1.cpp" target="_blank">Solution Link</a>)</h3>
+        First we sort the tasks in an ascending order in O(N * logN). Of course we need one machine for the first task, but then how to distribute the remaining M - 1 machines? How about we consecutively distribute all machines as early as possible? Consider this intuition: we have three tasks T and two machines M, assigning T<sub>1</sub> to M<sub>1</sub>, if we then assign T<sub>3</sub> to M<sub>2</sub>, the answer will be T<sub>2</sub> - T<sub>1</sub>. If we assign T<sub>2</sub> to M<sub>2</sub>, the answer is T<sub>3</sub> - T<sub>1</sub> which is at least larger or equal to the former one. For |T| = 4, {T<sub>1</sub>, M<sub>1</sub>} and {T<sub>3</sub>, M<sub>2</sub>} result in min(T<sub>2</sub> - T<sub>1</sub>, T<sub>4</sub> - T<sub>2</sub>). {T<sub>1</sub>, M<sub>1</sub>} and {T<sub>4</sub>, M<sub>2</sub>} result in min(T<sub>2</sub> - T<sub>1</sub>, T<sub>3</sub> - T<sub>2</sub>). {T<sub>1</sub>, M<sub>1</sub>} and {T<sub>2</sub>, M<sub>2</sub>} result in min(T<sub>3</sub> - T<sub>1</sub>, T<sub>4</sub> - T<sub>2</sub>), which is the maximum. This is also true for arbitrary N where N &gt; 0. Obviously, we want to make the number of tasks assigned to each machine and its interval evenly distributed. This helps avoid the result from being pulled down by the especially small interval of some other machines. That's why we better assign the i-th task to the (i MOD M)-th machine individually. To find the smallest interval, let ANS be 86400, we can loop through all tasks and then ANS = min(ANS, T<sub>i + M</sub> - T<sub>i</sub>) where i + M &le; N in O(N). Hence we reach the solution in O(N * logN).
+        <h3>Approach 2: Maximum bipartite matching (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MACHCOOL_2.cpp" target="_blank">Solution Link</a>)</h3>
+        This approach is overkill. Let ANS be the answer, G = (V, E) be a directed acyclic graph (DAG), where V are tasks and there is an edge from V<sub>1</sub> to V<sub>2</sub> if and only if V<sub>1</sub> + ANS &le; V<sub>2</sub>. From the DAG, every node on any path can be distributed to a machine. There may many valid paths, if we want to find the minimum number of machines we need, we have to minimize the number of paths so that every node appears only once. That is, we want to maximize the ordered pair (u, v) where there is an edge from u to v and both cannot not be the first and second element more than once. This is equivalent to the minimum edge cover problem in a bipartite graph. Let L and R be two disjoint and independent sets, both include V in G, in other words, the number of tasks. Edges connecting from L to R are corresponding to E in G as well. This will form a bipartite graph. Finding the maximum matching in bipartite graph is a well known problem which can be done in O(|V|<sup>3</sup>) where |V| equals N which is the number of tasks, by using Hungarian algorithm with depth-first search. Obviously, the number of unmatched points (Maximum independent set) in L is the number of machines we need. Once we know the maximum matching, we can also get the number of machines we need because maximum independent set = minimum edge cover = |V| - maximum matching in bipartite graph.<br /><br />
+        Finding the maximum matching can only verify our answer, but not finding out the answer. It is too slow to try every possible value. We know that ANS affects how G looks like. If ANS is larger, |E| and matchings become less, hence the number of machines increases, vice versa. It means we can use binary search between 0 and 86400. During each check, we construct G and draw an edge from u to v if and only if u + median &le; v. The next step is just to find out the minimum edge cover in O(N<sup>3</sup>). We want the upper bound since we need to maximize the cooling time, if M &ge; current matchings, we have to increase the median to make the result larger. If M &lt; current matchings, we want less |E| and matchings to make the result less. The whole problem can be solved in O(N<sup>3</sup> * log (86401)).
+      </div>
+      <div id="TLPNGEM">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/TLPNGEM/" target="_blank">Link</a> | 
+          Time: 0.6s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Dynamic Programming</span><span class="tag">Queue</span><span class="tag">Stack</span>
+        </div>
+        <hr />
+        Let N and M be the length of S and number of gems, all the gems will split the whole string into M + 1 segments. We can solve this problem by dynamic programming with greedy insight in O(N). As we have to collect all gems and one teleporter can only send us to next 3 teleporters, which means we can only move forward and collect the gems sequentially. Now consider each segment individually, we will find out the minimum number of moves in each segment by dynamic programming, and then we can overview the whole string by adding the result of each segment together.
+        <h3>Approach 1: Dynamic programming (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/TLPNGEM.cpp" target="_blank">Solution Link</a>)</h3>
+        Although we have M + 1 segments, we actually work on M segments because the last segment will not contain any gem. A string "@.*..@.@**.." produces three segments: [1 - 3, 3 - 9, 9 - 10]. In each segment S, we want to record the relative position of each teleporter, from that example, it is [[1], [4, 6], []]. Let SP<sub>i, j</sub> be the relative position of teleporter j in S<sub>i</sub>. For each i, we define a function f(p) where 1 &le; p &le; |S<sub>i</sub>|, as the minimum number of moves from position 1 to p in S<sub>i</sub>. Thus, f(|S<sub>i</sub>|) will be the answer of S<sub>i</sub>, and &sum;<sub>i=1</sub><sup>M</sup> f(|S<sub>i</sub>|) is the final answer. Initially, f(p) is filled with INF, where INF is a number larger than the largest possible answer which is 10000 in this problem. If S<sub>i</sub> contains either 1 or 0 teleporter, f(|S<sub>i</sub>|) is simply |S<sub>i</sub>| - 1 because we can only move step by step. If the segment contains at least two teleporters, the answer may be less than |S<sub>i</sub>|. Please consider the following formulations:
+        <ul>
+          <li>S<sub>p</sub> is gem "*", we are either at the most left or most right cell, thus
+            <br />- f(1) = 0
+            <br />- f(|S<sub>i</sub>|) = f(|S<sub>i</sub>| - 1) + 1</li>
+          <li>S<sub>p</sub> is empty cell ".", without the help of teleporters we can only move 1 unit by 1 move, thus
+            <br />- f(p) = f(p - 1) + 1</li>
+          <li>S<sub>p</sub> is teleporter "@", where p = SP<sub>i, j</sub>, we consider being transferred from any of previous 3 teleporters or not being transferred. We can compute from either left to right or right to left, sequentially. If we compute from left to right, f(p) is already known, except the first teleporter, thus
+            <br />- f(p) = SP<sub>i, 1</sub> - 1, where p = SP<sub>i, 1</sub>
+            <br />- f(SP<sub>i, j + 1</sub>) = min(f(SP<sub>i, j + 1</sub>), f(SP<sub>i, j + 1</sub> - 1) + 1, f(SP<sub>i, j</sub>) + 3)
+            <br />- f(SP<sub>i, j + 2</sub>) = min(f(SP<sub>i, j + 2</sub>), f(SP<sub>i, j + 2</sub> - 1) + 1, f(SP<sub>i, j</sub>) + 3, f(SP<sub>i, j + 1</sub>) + 3)
+            <br />- f(SP<sub>i, j + 3</sub>) = min(f(SP<sub>i, j + 3</sub>), f(SP<sub>i, j + 3</sub> - 1) + 1, f(SP<sub>i, j</sub>) + 3, f(SP<sub>i, j + 1</sub>) + 3, f(SP<sub>i, j + 2</sub>) + 3)</li>
+            Keep iterating over all teleporters in that segment, and finally we get f(SL<sub>i</sub>).
+        </ul>
+        Keep iterating over all segments and doing the above procedures, which can be done by double-ended queue (Deque) or three pointers, we get all f(|S<sub>i</sub>|) from segment 1 to M. Adding all results together greedily produces the minimum number of moves from S<sub>1</sub> to S<sub>&sum;<sub>i=1</sub><sup>M</sup> SL<sub>i</sub> - M - 1</sub> in O(N).
+      </div>
+      <div id="LNTILING">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/LNTILING/" target="_blank">Link</a> | 
+          Time: 0.7s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><br />
+          <span class="tag">Backtracking</span><span class="tag">Bitmasking</span><span class="tag">Dynamic Programming</span><span class="tag">Pruning</span><span class="tag">Implementation</span>
+        </div>
+        <hr />
+        One strategy to solve this non-polynomial problem is to try all possibilities. This is a kind of subset problem but the order matters, so the number of potential answers is far more than N!. It is impossible to try every permutation of size from 1 to N, but we can use backtracking strategy and memoization to speed O(N!) solution up.
+        <h3>Approach 1: Backtracking with bitmasking (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/LNTILING.cpp" target="_blank">Solution Link</a>)</h3>
+        <strong>- Reduce the number of available tiles</strong><br />
+        Let N be the number of tiles, we can check if one distinct tile can fit the gap. If not, we discard all of that type of tiles. If &sum;<sub>i=1</sub><sup>N</sup> |N<sub>i</sub>| &lt; |GAP|, the answer is NO. If any of the segments of N<sub>i</sub> &gt; the longest segment of the gap, we discard all the same tiles. This is especially important to pass some tricky test cases, for example, all tiles match the gap but cannot fill the gap completely, or &sum;<sub>i=1</sub><sup>N</sup> |N<sub>i</sub>| &ge; |GAP| but very few of tiles do not fit the gap. Of course, we can find all subsets such that the sum is equal to |GAP| and then permute between them. But this is not necessary for this problem because finding all correct subsets takes extra time in either O(2<sup>N</sup>) or  O(|GAP| * N).<br /><br />
+        <strong>- Backtracking and bitmasking</strong><br/>
+        Once we know the answer of a subproblem is wrong, all answers based on that subproblem are wrong so we can stop and backtrack. Thus, the recursion tree of that node will never go deeper. This is the case that a tile N<sub>i</sub> does not fit the current position of the gap. Starting from 0 to 2<sup>N</sup> - 1, to obtain all permutations of different size, in each bitmask we need to try those tiles in four rotations in right angle that are not included in the mask. Thus, each node of the recursion tree will have N - 1 child nodes. To use backtracking strategy in this problem, the idea is that we try to rotate N<sub>i</sub> in right angle from the starting position POS<sub>1</sub> of the gap (we define POS<sub>j</sub> as the coordinates in length j of the gap, where 1 &le; j &le; |GAP|, if all vertices of it fit the long gap, we break the rotation and recursively try the remaining tiles by bitmasking from the POS<sub>j + |N<sub>i</sub>|</sub> + 1. If it does not fit, we discard this tile and all permutations based on this tile in the current position. Once the length j reaches |GAP|, we stop and return the YES. To check if the VERTEX<sub>k</sub> of N<sub>i</sub> lies on the gap, we need VERTEX<sub>k - 1</sub>. Also, the vertices of head and tail of the segment POS<sub>j</sub> belongs to are required. If their directions are different, or VERTEX<sub>k</sub> does not lie between the head and tail, it is outside the scope. Remember that we have to do right rotation if left rotation fails.<br /><br />
+        <strong>- Memoization</strong><br/>
+        We will soon discover that there are many overlapping subproblems. If we have M same tiles, where M &gt; 1, the above method will just repeatedly try the same tile in the same position. We will compute the same subproblem again we already solved. Suppose there are K distinct tiles, CACHE<sub>K<sub>i</sub>, POS<sub>j</sub></sub> stores the length of POS<sub>j</sub> + |K<sub>i</sub>| + 1 if it fits the gap; if it does not fit, the value is 0; if it is not computed yet, initial value is -1. It avoids from solving the problems already solved, skipping the rotation checking step for tile N<sub>i</sub> belongs to distinct tile K<sub>i</sub>. In each permutation, we first check CACHE<sub>K<sub>i</sub>, POS<sub>j</sub></sub>, we can directly skip N<sub>i</sub> if it is 0; we can directly call the next recursion with CACHE<sub>K<sub>i</sub>, POS<sub>j</sub></sub> if it &gt; 0; we have to rotate N<sub>i</sub> and update the corresponding value if it is -1.<br /><br />
+        Some algorithm techniques can be used to prevent brute-force enumeration. It is necessary to discard all invalid permutations as early as possible, and make the recursion tree shorter. In this binary question, we just have to answer YES/NO, once we reach the destination just return the answer, fully complete search is not needed.
+      </div>
+      <div id="GIFTARNG">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/GIFTARNG/" target="_blank">Link</a> | 
+          Time: 0.4s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Dynamic Programming</span>
+        </div>
+        <hr />
+        In this problem, we have to consider all possible rotations of box and figure out the optimal combination. Instead of a O(6<sup>N</sup>) naive solution, a O(N) dynamic programming solution will be described here.
+        <h3>Approach 1: Dynamic programming (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/GIFTARNG.cpp" target="_blank">Solution Link</a>)</h3>
+        Let's start with the three unduplicated surfaces of a gift box {W, D}, {H, D}, {W, H}, considering every possible variants of them, we have 6 possible rotations {W, D, H}, {W, H, D}, {D, W, H}, {D, H, W}, {H, W, D} and {H, D, W}. Let R<sub>j, i</sub>, where 1 &le; j &le; 6, be the corresponding dimensions of j-th rotation of the i-th gift, assigning {X, Y, Z} to {width, height, depth}. We want to maximize the total visible area without keeping trying all combinations repeatedly, so let's define a function f(r, i), where 1 &le; r &le; 6, as the current maximum visible area we can get from 1 to i-th gift, in which we place the i-th gift with R<sub>j, i</sub> dimensions. Then, we can use the following formulations. 
+        <ul>
+        <li>f(r, 1) = R<sub>j, 1</sub>{W, D} * 2 + R<sub>j, 1</sub>{H, D} * 2 + R<sub>j, 1</sub>{W, H}.<br />
+        For the first gift, f(r, 1) is simply the total surface area except the bottom of that gift with r dimensions.</li>
+        <li>f(r, i) = max(f(r, i - 1)) + R<sub>j, i</sub>{W, D} * 2 + R<sub>j, i</sub>{W, H} + DD + DH, where i &gt; 1.</li>
+        For the i-th gift, we only place this after the most optimal combination from 1 to i - 1 gift so we have to find out max(f(r, i - 1)) which takes 6 times computation. Note that if H and D are both less than previous box's H and D, the total area of {H, D} is not affected. Let DD and DH be the vertical difference and horizontal area difference of {H<sub>i</sub>, D<sub>i</sub>} and {H<sub>i - 1</sub>, D<sub>i - 1</sub>} respectively. If D<sub>i</sub> &gt; D<sub>i - 1</sub> or H<sub>i</sub> &gt; H<sub>i - 1</sub>, DD or DH is simply the double of the extra area of {H, D}. If D<sub>i</sub> &gt; D<sub>i - 1</sub> and H<sub>i</sub> &gt; H<sub>i - 1</sub>, we have to minus the overlapping area of DD and DH and mulitply the sum of DD and DH by 2 as well. Otherwise, DD = 0 and DH = 0.</li>
+        </ul>
+        At the end, we will have 6 different answers, representing the maximum of area of 1 to n - 1 th gift plus the n-th gift with R<sub>j, n</sub> dimensions. Of course, we choose the largest one. Our answer is then be max(f(r, n)). Except the first gift, the computation for i-th gift takes 36 times to combine f(r, i - 1) and 6 possible rotations, hence O(36 * (N - 1) + 6) for all gift boxes in total. The overall time complexity becomes O(N).
+      </div>
+    <!--
+    <div id="PSHAPE">
+    <div class="constraint">
+      Problem statement: <a href="http://www.spoj.com/problems/PSHAPE" target="_blank">Link</a> | 
+      Time: 0.2s per test file | 
+      Source: 5000B | 
+      Memory: 1536MB | 
+      Languages: ALL
+    </div>
+    <hr />
+    In this problem, we can pair any X with any Y to form new coordinates. A greedy insight will help form optimal distribution of coordinates and maximize the area of three shapes.
+    <h3>Approach 1: Greedy solution (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/PSHAPE.cpp" target="_blank">Solution Link</a>)</h3>
+    Before thinking of the optimal distribution of coordinates, we firstly think of the order of the formation of shapes. Since one shape must wrap one shape, circle's area is the largest. The order of formation will be circle &gt; quadrilateral &gt; triangle. By choosing two coordinates {min<sub>x</sub>, min<sub>y</sub>} and {max<sub>x</sub>, max<sub>y</sub>}, we get the farthest distance of two points. We use these two points to form a circle, then quadrilateral and triangle must stay inside the circle, but they can still touch the boundary of the circle like cyclic quadrilateral and circumscribed circle. If we try any other orders, the sum of three shapes' area is not maximized because it violates the instruction 'One shape must wrap one shape'.<br /><br />
+    To form a N-gon, we need at least N points. If the given N &lt; 2, we can simply print 0 as the answer. If not, we have to sort two arrays and get two multisets S1 and S2 in ascending order. Now, following the formation order, we compute the area of circle using two farthest points, that are, {S1<sub>0</sub>, S2<sub>0</sub>} and {S1<sub>N - 1</sub>, S2<sub>N - 1</sub>}. Now the number of remaining points CUR we can use is N - 2. The next step is to consider quadrilateral, which needs 4 points. If CUR equals 3, we skip the quadrilateral and compute the areae of triangle directly. If CUR &ge; 4, we use four extreme points in clockwise from lower left, that are {S1<sub>1</sub>, S2<sub>1</sub>}, {S1<sub>2</sub>, S2<sub>N - 3</sub>}, {S1<sub>N - 2</sub>, S2<sub>N - 2</sub>} and {S1<sub>N - 3</sub>, S2<sub>2</sub>} to form a 4-gon, and then CUR = CUR - 4.<br /><br />
+    Now, the hardest part is to compute the area of triangle. Of course, we will only consider the four remaining extreme values of S1 and S2 respectively, two for smallest and two for largest (Or three values, depends on CUR). We create two empty multisets TX and TY, storing the candidate X and Y of vertices of resulting triangle. If the quadrilateral is skipped, TX = {S1<sub>1</sub>, S1<sub>2</sub>, S1<sub>3</sub>} and TY = {S2<sub>1</sub>, S2<sub>2</sub>, S2<sub>3</sub>}. If not, we set CUR = CUR - 4, and then if CUR &ge; 3, TX = {S1<sub>3</sub>, S1<sub>4</sub>} and TY = {S2<sub>3</sub>, S2<sub>4</sub>}. If CUR = 3, we insert S1<sub>5</sub> and S2<sub>5</sub> into TX and TY respectively. If CUR &gt; 3, we insert {S1<sub>N - 5</sub>, S1<sub>N - 4</sub>} and {S2<sub>N - 5</sub>, S2<sub>N - 4</sub>} into TX and TY respectively. Note that the size of TX is the same as the size of TY. As the order of coordinates will not affect the area of triangle, so we just have to find the combinations of any three points from the combinations of {TX, TY}. Firstly, we don't use the same point. Now, we can reduce the computation from SIZE<sub>TX</sub><sup>6</sup> times to 4<sup>2</sup> * 3<sup>2</sup> * 2<sup>2</sup> * 1<sup>2</sup> = 576 for SIZE<sub>TX</sub> = 4 or 3<sup>2</sup> * 2<sup>2</sup> * 1<sup>2</sup> = 36 for SIZE<sub>TX</sub> = 3, which is 36 times less. Secondly, the order is not important. Hence the iteration times can be further reduced to 96 and 6 for SIZE<sub>TX</sub> = 4 and SIZE<sub>TX</sub> = 3 respectively, also 36 times less. As for how to compute the area of N-gon by vertices, it is easy to find on the Internet, like using determinants for 3-gon and cross products for 4-gon. The whole problem can be solved in O(N * log N).
+    </div>
+    <div id="PRIPYAT">
+    <div class="constraint">
+      Problem statement: <a href="http://www.spoj.com/problems/PRIPYAT/" target="_blank">Link</a> | 
+      Time: 9s per test file | 
+      Source: 5000B | 
+      Memory: 1536MB | 
+      Languages: ALL
+    </div>
+    <hr />
+    I wrote this problem to commemorate the 32-nd anniversary of the Chernobyl nuclear disaster, and my second visit to Chernobyl in May, 2018 since August, 2016. Okay, let's start the solution.
+    <h3>Approach 1: Dynamic programming with bitmasking (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/PRIPYAT.cpp" target="_blank">Solution Link</a>)</h3>
+    Firstly, we have to select some places to visit so that the total EXC is maximized and the VT and RL are less than or equal to the given limit. This is a classical 3D 0/1 knapsack problem, so we can use dynamic programming (DP). We define a function f1(x, y, z) as the maximum EXC we can get, in which we consider places from the first place to x-th place, by not exceeding y unit of VT and z amount of TL. Obviously, when any of x, y, z is 0, f1(x, y, z) is 0. For x &ge; 1, we only consider x-th place when VT<sub>x</sub> &le; y and RL<sub>x</sub> &le; z, hence we get f1(x, y, z) = max(f1(x - 1, y, z), f1(x - 1, y - VT<sub>x</sub>, z - RL<sub>x</sub>) + EXC<sub>x</sub>). Otherwise, it is impossible to accept VT<sub>x</sub>, RK<sub>x</sub>, or both, so we don't visit x-th place and f1(x, y, z) = f1(x - 1, y, z). Now, f1(N, MVT, TRL) is the maximum EXC we can get. We can know what places are selected by iterating over all f1's results backwards. Since the f1(x, y, z) is in increasing order, we start from f1(N, MVT, TRL), x-th place is selected when f1(x, y, z) &gt; f1(x - 1, y, z). After each selection, we set y to y - VT<sub>x</sub> and z to z - RL<sub>x</sub>. The iteration stops when any x, y, z is 0, which means it is impossible for all remaining places to meet all given limits. Note that RL is a set of real numbers with at most 2 digits after the decimal point, we can multiply RL and TRL by 100 so that the whole part can be solved by integer linear programming in O(N * MVT * TRL * 100).<br /><br />
+    Now we know what places are selected, and have to find out the shortest distance from the starting point to visit all selected places without duplicate visit. The first step is to set all unselected places in the matrix to a barrier. Assume that K places are selected, as units are in equal distance, we will do a breadth first search (BFS) K + 1 times (because the starting point is included) at the location of i-th selected place to find out the shortest distance from i-th place to other places. Let the answer be DIST<sub>K, R, C</sub>. Note that when performing BFS, we must not put barriers and selected places into the queue (but we do calculate the shortest distance of that cell) because we are not allowed to visit the selected places twice or more. So, if the target is blocked, the distance will be INF (number larger than possible answer). This pre-calculation done in O(R * C * (K + 1)) gives us important information to optimize the result.<br /><br />
+    Then, we can enumerate all possibilities with the help of DP and bitmasking. Integer can be represented by a set of bits which is either 1 or 0, which can be used in representing the state of a place. From the right, if the i-th bit is set, the i-th place is visited. Therefore, the bound of masks is 2<sup>K + 1</sup> - 1. We again define a function f2(x, y) as the shortest distance from x-th place to visit all the selected places by already visiting y in mask places. So, we only consider those places where haven't been to. From that, the DP state transition is as follows: for each place, if (y & (1 &lt;&lt; i)) is 0, f2(x, y) = min(f2(i, (y | (1 &lt;&lt; i))) + DIST<sub>x, R<sub>i</sub>, C<sub>i</sub></sub>). To avoid overlapping computation, in every recursion we can return the result immediately if f2(i, (y | (1 &lt;&lt; i)) is memoized already. Also, one possible sequence will stop calling f2 if all bits are set, which means all places are visited and equal to bound. We will start from the starting point and none of the place is visited except the starting point, so we initially call f2(0, 1). Remember that if one point is inaccessible from x-th place, the distance matrix of that cell is INF. It means that if the result obtained by f2(0, 1) &ge; INF, it is impossible to visit all selected places without duplicate visit from the starting point.<br /><br />
+    With the help of DP and bitmasking, the time and space complexity is reduced, and the problem can still be solved accurately in reasonable time, which is O((K + 1) * (N * MVT * TRL * 100 + R * C + (K + 1)) * 2<sup>K + 1</sup>).
+    </div>
+    -->
+      <div id="TRIBT">
+        <div class="constraint">
+          Problem statement: <a href="http://www.spoj.com/problems/TRIBT/" target="_blank">Link</a> | 
+          Time: 1s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Dynamic Programming</span><span class="tag">Tree</span><span class="tag">Depth-first Search</span>
+        </div>
+        <hr />
+        The binary tree constructed from parent array may be either balanced, unbalanced, complete or full. We can count the number of potential isosceles triangles (PIT) by one node's parent and child.
+        <h3>Approach 1: Depth first search (DFS) with memoization (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/TRIBT.cpp" target="_blank">Solution Link</a>)</h3>
+        Two paths starting from a parent node or root form a triangle. To meet the isosceles property, two paths must have the same length, therefore the number of PIT formed by these two paths is simply min(TO_CHILD_PATH<sub>left</sub>, TO_CHILD_PATH<sub>right</sub>). Please note that we must also check the min(TO_PARENT_PATH<sub>left</sub>, TO_CHILD_PATH<sub>right</sub>) and min(TO_PARENT_PATH<sub>right</sub>, TO_CHILD_PATH<sub>left</sub>) because the triangle can be in any direction. But in binary tree, it can only go left, go right or be upward. Therefore, the answer is the sum of these three values. To implement this, we can do a recursive DFS from the root. <br /><br />
+        Let LT<sub>p</sub> be the left child of node p and RT<sub>p</sub> be the right child, if any, otherwise its value is -1. Let LT_CHILD<sub>p</sub> and RT_CHILD<sub>p</sub> be the length of path from node p towards its left and right leaf, while LT_PARENT<sub>p</sub> and RT_PARENT<sub>p</sub> be the length of path from node p to its parent. If one way is unconnected, the corresponding value is 0 (Like the root has no parent and leaf has no child). Our DFS firstly checks if the parent (initially it is root) has left child. If yes, it sets LT_PARENT<sub>LT<sub>p</sub></sub> to LT_PARENT<sub>p</sub> + 1, and call itself from LT<sub>p</sub>, and then set LT_CHILD<sub>p</sub> to LT_CHILD<sub>LT<sub>p</sub></sub> + 1. Do the same for the right child. We then have the three required values and simply add them to the answer.
+      </div>
+      <div id="SMTOILET">
+        <div class="constraint">
+          Problem statement: <a href="http://www.spoj.com/problems/SMTOILET/" target="_blank">Link</a> | 
+          Time: 0.45s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Binary Search</span><span class="tag">Prefix</span><span class="tag">Simulation</span><span class="tag">Two pointers</span>
+        </div>
+        <hr />
+        M is so large while N is so small that it is impossible to solve the problem by brute force. Note that the amount of released odors is accumulated with the growth of time, so it will never be decreased. Due to the sorted property in nature, we do not have to calculate the amount from the very beginning at time 0 until it minimizes the diference between it and M.
+        <h3>Approach 1: Binary search (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/SMTOILET_1.cpp" target="_blank">Solution Link</a>)</h3>
+        Let T be toilets, we set the lower bound to 1 and upper bound to M / T<sub>1</sub>, because the first toilet will release smells immediately and the longest time will be M / T<sub>1</sub>. Let the median MID be LOW + (HIGH - LOW) / 2 (using (HIGH + LOW) / 2 causes overflow), we can calculate the amount of odors at MID by &sum;<sub>i=1</sub><sup>N</sup>T<sub>i</sub> * (MID - i - 1) in O(N), satisfying i &lt; MID. If the amount at MID &ge; M then HIGH = MID, else LOW = MID + 1, until LOW &ge; HIGH. Since the last resulting amount at HIGH is always &ge; M, we should always check if M - (amount at HIGH - 1) &lt; amount at HIGH - M, and then choose the one with smaller difference. The algorithm to find the time works in O(N * log High).<br /><br />
+        For the cubicle selection, the main idea is to find the maximum of consecutive available cubicles. The denominator is the logarithm with base 10 of HIGH powers of 10. As the answer should be as middle in the chosen range as possible, but it is affected by which side the entrance E is located at if the length of range is even. We can split the string by the entrance, counting the maximum of consecutive available cubicles on the left from 0 to E - 1, and right part from |S| - 1 to E + 1, respectively. As they iterate towards each other, it is easy to find the middle by i - ceil(TEMPSCORE<sub>left</sub> / 2.0) and j + ceil(TEMPSCORE<sub>right</sub> / 2.0).
+        <h3>Approach 2: Prefix sum (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/SMTOILET_2.cpp" target="_blank">Solution Link</a>)</h3>
+        Actually (toilets[0] + toilets[1] + ... + toilets[N - 1]) - (toilets[1] * 1 + toilets[2] * 2 + ... + toilets[N - 1] * N - 1) can be obtained using prefix sum and prefix sum of prefix sum. Let PSUM<sub>i</sub> = &sum;<sub>j=0</sub><sup>i</sup>toilets[j] and PPSUM<sub>i</sub> = &sum;<sub>j=0</sub><sup>i</sup>PSUM[j]. After repeating N times, if PPSUM is still &le; M, we can find the remaining time to minimze the difference between the amount of odors and M by N + (M - PPSUM<sub>N</sub>) / PSUM + 1. Again, since the amount of ordors at answer surly &ge; M, we have to calculate the lower candidate answer, that is, answer - 1, and choose the one with smaller difference.
+      </div>
+      <div id="MAPEXC">
+        <div class="constraint">
+          Problem statement: <a href="http://www.spoj.com/problems/MAPEXC/" target="_blank">Link</a> | 
+          Time: 0.6s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Graph</span><span class="tag">Depth-first Search</span><span class="tag">Breadth-first Search</span><span class="tag">Shortest Path</span>
+        </div>
+        <hr />
+        This is a graph problem. Actually, we can treat cost as distance, so our main task is to caculate the cost matrix for the given map. Once we know the shortest distances from S to all other cells (it seems Dijkstra Algorithm is useful here), we can answer the first question of the problem and generate the new map for the second question. If you are careful enough, you will find a big hint mentioned in the problem statement: only from '.' to '.' will increase no cost. Now, we get two conditions for every move: 1. Cost remains unchanged, or 2. Cost + 1.
+        <h3>Approach 1: Breadth first search (BFS) (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MAPEXC_1.cpp" target="_blank">Solution Link</a>)</h3>
+        We need a cost matrix filled with -1 and to do a BFS from S in four directions in O(N * M). Let P be the current cell (front of the queue), G be the input graph and C be an adjacent cell, check if C is within the map area. If yes, we have to check the map symbol of P and C. If G<sub>C<sub>i</sub>, C<sub>j</sub></sub> and G<sub>P<sub>i</sub>, P<sub>j</sub></sub> are both '.', we will enter condition 1, else condition 2.<br /><br />
+        Condition 1: cost<sub>C<sub>i</sub>,C<sub>j</sub></sub> = -1 means we have not visited C yet, or cost<sub>C<sub>i</sub>,C<sub>j</sub></sub> &gt; cost<sub>P<sub>i</sub>,P<sub>j</sub></sub> means we have shorter distance from S to C. In these cases, cost<sub>C<sub>i</sub>, C<sub>j</sub></sub> = cost<sub>P<sub>i</sub>, P<sub>j</sub></sub>.<br />
+        Condition 2: cost<sub>C<sub>i</sub>, C<sub>j</sub></sub> = -1, or cost<sub>C<sub>i</sub>, C<sub>j</sub></sub> &gt; cost<sub>P<sub>i</sub>, P<sub>j</sub></sub> + 1 means the shortest distance from S to C will be cost<sub>P<sub>i</sub>, P<sub>j</sub></sub> + 1. In these cases, cost<sub>C<sub>i</sub>, C<sub>j</sub></sub> = cost<sub>P<sub>i</sub>, P<sub>j</sub></sub> + 1.<br /><br />
+        Then, we push C into the queue, keep iterating until it is empty. Finally, all cells are visited and we get the cost matrix, telling us the shortest distances from S to other cells. We can now just check if cost<sub>F<sub>i</sub>, F<sub>j</sub></sub> &le; D to answer the first question. For the second question, loop through the cost matrix, if current position is S or F, output the corresponding character. If not, check if cost<sub>i, j</sub> &le; cost<sub>F<sub>i</sub>, F<sub>j</sub></sub>, if yes, output '.', else '#'.
+        <h3>Approach 2: Combination of BFS and DFS (Depth first search) (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/MAPEXC_2.cpp" target="_blank">Solution Link</a>)</h3>
+        If you love typing, choose this approach. The procedure is BFS - DFS - BFS. Firstly, do a BFS from S in four directions, without comparing the map symbol of the front of the queue with the adjacent cell. But we have to check if the new cell's symbol is '.', and record the position E of the first one, in order to know the shortest distance from S to the nearest tunnel cell and its position. This gives us the shortest distances from S to other cells in cost1<sub>N, M</sub>, assuming there is no empty tunnel in the given map. If there are, now we can do a DFS from E to fill the whole tunnel and find the edge of it, that is, at least one edge of tunnel cell is not connected with another tunnel cell. After that, do a BFS again. This time, we do it for a polygon (as we know the edge of tunnel) with initial cost cost1<sub>E<sub>i</sub>, E<sub>j</sub></sub>, rather than a point. This gives us the shortest distances from the edge of tunnel to other cells plus its initial cost in cost2<sub>N, M</sub>. If we merge cost1<sub>N, M</sub> and cost2<sub>N, M</sub> by choosing min(cost1<sub>i, j</sub>, cost2<sub>i, j</sub>), we will obtain the correct cost matrix.
+      </div>
+      <div id="TRFPLN">
+        <div class="constraint">
+          Problem statement: <a href="http://www.spoj.com/problems/TRFPLN/" target="_blank">Link</a> | 
+          Time: 0.04s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Difficulty: 
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Greedy</span><span class="tag">Prefix</span><span class="tag">Brute Force</span>
+        </div>
+        <hr />
+        The road network is in grid pattern and the traffic police can only move horizontally and vertically. These observations imply that we are required to calculate the 3D manhattan distance using formula |X<sub>i</sub> - X<sub>j</sub>| + |Y<sub>i</sub> - Y<sub>j</sub>| + |Z<sub>i</sub> - Z<sub>j</sub>|, between each intersection and all other intersections. And the one that has the smallest sum of distances is the answer. Brute-force is the easiest way to solve and implement, but O(N<sup>2</sup>) is likely to cause TLE. So we need a better strategy.
+        <h3>Approach 1: Sorting and prefix sum (<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/TRFPLN.cpp" target="_blank">Solution Link</a>)</h3>
+        For manhattan distance, we can consider each dimension separately. Firstly, let X, Y, Z be the sorted x, y, z dimension in an ascending order with its original position respectively, in O(N log N). Then, we calculate the prefix sum of X, Y, Z respectively, let them be PX, PY and PZ. Let D be a particular dimension (abstraction of X, Y, Z), the prefix sum P<sub>D</sub> at j-th point is &sum;<sub>i=0</sub><sup>j</sup>D<sub>i</sub>. That is, P<sub>D<sub>j</sub></sub> = P<sub>D<sub>j - 1</sub></sub> + D<sub>j - 1</sub>. With the help of prefix sum, we can calculate the sum of distance to other points for a point in X, Y, Z. We have to make use of the original position of the current point. For a particular i-th point, the idea is to find the left part sum (smaller than D<sub>i</sub>) and the right part sum (larger than Z<sub>i</sub>). For the left part sum, for each point with smaller value, the distance from i-th point to that point j in D is D<sub>i</sub> - D<sub>j</sub>. For all points, the formula is i * D<sub>i</sub> - P<sub>D<sub>i</sub></sub>. For the right part sum, the accumulated sum is in the same direction we want, therefore the formula is P<sub>D<sub>N</sub></sub> - P<sub>D<sub>i + 1</sub></sub> - (N - i - 1) * D<sub>i</sub>. For i-th point, the distance in D dimension between it and all other points is the sum of left part sum and right part sum, let it be DIST<sub>D<sub>i</sub></sub>. The last step is simply to use linear scan to find the index i that minimizes DIST<sub>X</sub><sub>i</sub> + DIST<sub>Y</sub><sub>i</sub> + DIST<sub>Z</sub><sub>i</sub> in O(N). The overall time complexity is O(N * logN).
+      </div>
+    </div>
+  </div>
+  <hr />
+  <footer></footer>
+<script src="scripts/var.js"></script>
+<script src="scripts/global.js"></script>
+<script src="scripts/probs.js"></script>
+</body>
+</html>

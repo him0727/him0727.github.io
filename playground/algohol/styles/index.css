@@ -1,0 +1,34 @@
+#name-code-panel {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  font-family: 'Courier New';
+}
+#name-code-panel div {
+  background-color: #000000; 
+  border-radius: 5px; 
+  color: #FFFFFF; 
+  display: inline-block; 
+  padding: 10px;
+}
+.statistic-box {
+  border: 1px solid #B5B5B5;
+  border-radius: 5px;
+  margin: 0 10px; 
+  padding: 5px; 
+  text-align: center; 
+  width: 350px;
+}
+.statistic-box span {
+  font-size: small;
+}
+.menu-this, .menu {
+  margin: 0 0 0 15px;
+}
+
+@media only screen and (max-width: 750px) {
+  .statistic-box {
+    margin: 0 10px 10px 10px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,80 @@
+a {
+  color: #0174DF;
+  text-decoration: none;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Trebuchet MS";
+}
+hr {
+  border: 0;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  height: 1px;
+  margin: 10px 0 10px 0;
+}
+div {
+  box-sizing: border-box;
+}
+nav {
+  background-image: linear-gradient(to right, rgba(163, 183, 182, 1), rgba(211, 211, 209, 1), rgba(163, 183, 182, 1));
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(84,88,94,0.75);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(84,88,94,0.75);
+  box-shadow: 0px 1px 5px 0px rgba(84,88,94,0.75); 
+  display: flex; 
+  align-items: center; 
+  flex-direction: row; 
+  position: sticky; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  justify-content: space-between;
+}
+footer {
+  margin: 5px 0 10px 0;
+}
+
+#nav-left {
+  color: #FEFFE0; 
+  font-size: x-large; 
+  font-weight: bold;
+}
+#nav-right {
+  color: #FFFFFF; 
+  font-size: large; 
+  font-weight: 500;
+}
+.content {
+  padding: 10px 20px;
+  margin: 0px;
+  overflow: hidden;
+  text-align: justify;
+}
+.menu-this, .menu {
+  margin: 0 0 0 15px;
+}
+.menu-this {
+  color: #656D7B;
+}
+.menu a {
+  color: #FFF;
+}
+.menu a:hover {
+  color: #CAE0FA;
+}
+.menu:hover {
+  cursor: hand;
+}
+
+
+@media only screen and (max-width: 750px) {
+  #nav, #nav-right {
+    display: block;
+  }
+  #nav-right {
+    clear: left;
+  }
+  .content {
+    flex-direction: column; 
+  }
+}

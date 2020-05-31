@@ -30,13 +30,13 @@ if (!String.prototype.format) {
 function loadContent(target) {
 	var response;
 	$.ajax({
-		url: "data.json",
+		url: "js/data.json",
 		async: false,
 		success: function(result) {
 			response = result[target];
 		}, 
 		error: function(xhr, status, thrown) {
-			alert("Error when loading content: " + status);
+			alert("Error when loading content: " + status + xhr.responseText + thrown);
 		}
 	});
 	return response;

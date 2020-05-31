@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Algohol - Him0727 .NET</title>
+<meta charset="utf-8">
+<meta name="author" content="CHAN TAK HIM, him0727">
+<meta name="description" content="Aloghol, a website about data structure and algorithm, powered by HIM0727 .NET" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<link rel="stylesheet" href="styles/global.css">
+<link rel="stylesheet" href="styles/index.css">
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-11490216-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-11490216-2');
+</script>
+</head>
+<body>
+  <nav class="content">
+    <span id="nav-left"></span>
+    <span id="nav-right"></span>
+  </nav>
+  <div class="content" style="display: block; margin-top: 10px;">
+    <div id="name-code-panel">
+      <div>
+        <font color="#FFF893">const</font> <font color="#FB99FC">string</font> ALGORITHM = <font color="#56F77E">"Algorithm"</font>;<br />
+        <font color="#FFF893">const</font> <font color="#FB99FC">string</font> ALCOHOL = <font color="#56F77E">"Alcohol"</font>;<br />
+        cout <font color="#FCAC99">&lt;&lt;</font> ALGORITHM.<font color="#FEFE51">substr</font>(<font color="#56D9F7">0</font>, <font color="#56D9F7">4</font>) + ALCOHOL<font color="#FEFE51">.substr(</font><font color="#56D9F7">4</font>) <font color="#FCAC99">&lt;&lt;</font> <font color="#56F77E">'\n'</font>;<br />
+        <font color="#B3B3B2">=== O U T P U T ===<br />Algohol</font>
+      </div>
+    </div>
+    <br />
+    Welcome to <strong>&lt;/Algohol&gt;</strong>! This website is about Data Structure and Algorithm, including the algorithmic puzzles (and its solutions) created by me and my solutions to some problems on <a href="https://www.spoj.com/" target="_blank">SPOJ</a>. You can view the solution archive on Algohol or directly on <a href="https://github.com/him0727/Online-Judge-Solutions" target="_blank">my Github repository</a>, but I don't encourage you to copy and paste my solutions. Check out <a href="https://www.spoj.com/users/him0727/" target="_blank">my SPOJ profile</a>!<br /><br />
+     I am a problem setter SPOJ. If you want to solve my problems, you need a SPOJ account first. Note that cheating is not allowed (either copying my solution or others' solution, or just changing variable name and indentation), any cheating solutions will be disqualified. If you feel stuck, you can have a look on the anaylsis, but please don't copy it. Besides, I am quite happy to see a different approach from solvers than my intended approach, which is even more efficient. Looking forward to receiving your solution!<br /><br />
+     <span style="color: #36AD16;">
+       Extra: <br />
+       <svg class="bi bi-emoji-laughing" style="margin-top: 10px;" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+         <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+         <path fill-rule="evenodd" d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5z"/>
+         <path d="M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
+        </svg>
+       - I am pleased to announce that my problem "<a href="probs.html#LNTILING">LNTILING - Long Tiling</a>" was selected as one of the ten problems in <a href="https://www.bubblecup.org/CompetitorsCorner/Problems" target="_blank">Round 2, Bubble Cup 13 (2020)</a>.
+     </span>
+  </div>
+  <div class="content" style="display: flex; justify-content: center;">
+    <div class="statistic-box">
+      <span>I have created... <span id="num-probs"></span> problems.</span>
+      <hr />
+      Recommendations:<br />
+      <div id="list-probs"></div>
+    </div>
+    <div class="statistic-box">
+      <span>I have soleved... <span id="num-sols"></span> problems.</span>
+      <hr />
+      Random solutions:<br />
+      <div id="list-sols"></div>
+    </div>
+  </div>
+  <hr />
+  <footer></footer>
+<script src="scripts/var.js"></script>
+<script src="scripts/global.js"></script>
+<script src="scripts/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿<html>
+<head>
+<title>Solutions on SPOJ :: Algohol - Him0727 .NET</title>
+<meta charset="utf-8">
+<meta name="author" content="CHAN TAK HIM, him0727">
+<meta name="description" content="Aloghol, a website about data structure and algorithm, powered by HIM0727 .NET" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<link rel="stylesheet" href="styles/global.css">
+<link rel="stylesheet" href="styles/sols.css">
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-11490216-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-11490216-2');
+</script>
+</head>
+<body>
+  <nav class="content">
+    <span id="nav-left"></span>
+    <span id="nav-right"></span>
+  </nav>
+  <div id="template">
+    <div style="width: 100%; margin: 0 0 10px 0; border-bottom: #dfdfdf 1px dashed;">
+      <span style="width: 30%; float:left; display: inline-block;"><a href="{0}" target="_blank">{1}</a></span>
+      <span style="width: 70%; float:left; display: inline-block;"><a href="{2}" target="_blank">{3}</a></span>
+      <br />
+      <div style="margin: 5px 0;">{4}</div>
+    </div>
+  </div>
+  <div class="content" style="display: flex; justify-content: flex-start; ">
+    <div id="left-panel">
+      <div class="wrap" style="background-color: #D2F0EA; border-color: #B5DDD5;">
+        <span class="cat">- &#8249; Math &#8250;</span>
+        <div style="display: block">
+          <span class="color-tag"><input type="checkbox" class="tags" value="1" checked="checked"> Math</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="2" checked="checked"> Combinatorics</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="20" checked="checked"> Probability</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #FBDECD; border-color: #F9C3A3;">
+        <span class="cat">+ &#8249; Dynamic Programming &#8250;</span>
+        <div style="display: none">
+          <span class="color-tag"><input type="checkbox" class="tags" value="3" checked="checked"> Dynamic programming</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="14" checked="checked"> Subsequence</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="2" checked="checked"> Combinatorics</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #F2CBE1; border-color: #F294C9;"> 
+        <span class="cat">+ &#8249; Graph &#8250;</span>
+        <div style="display: none">
+          <span class="color-tag"><input type="checkbox" class="tags" value="4" checked="checked"> Graph</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="12" checked="checked"> Depth first search</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="13" checked="checked"> Breadth first search</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="26" checked="checked"> Shortest path</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #B2F98E; border-color: #94F762;"> 
+        <span class="cat">+ &#8249; Tree &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="9" checked="checked"> Tree</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="10" checked="checked"> Binary indexed tree</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="11" checked="checked"> Segment tree</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="12" checked="checked"> Depth first search</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="13" checked="checked"> Breadth first search</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #E0ECE7; border-color: #BFC9C5;">
+        <span class="cat">+ &#8249; Data structure &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="7" checked="checked"> Data structure</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="18" checked="checked"> Set</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="19" checked="checked"> Queue</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="27" checked="checked"> Hash</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="28" checked="checked"> Stack</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="10" checked="checked"> Binary indexed tree</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="11" checked="checked"> Segment tree</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="32" checked="checked"> Disjoint set union</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="33" checked="checked"> Heap</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #A9D0F0; border-color: #79BDF4;">
+        <span class="cat">+ &#8249; Geometry &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="16" checked="checked"> Geometry</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="17" checked="checked"> Connected component</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="29" checked="checked"> Convex hull</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #F7C9D7; border-color: #F2A8BE;">
+        <span class="cat">+ &#8249; Sorting &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="6" checked="checked"> Sorting</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="21" checked="checked"> Greedy</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="24" checked="checked"> Binary search</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #F7FCA3; border-color: #F2F970;">
+        <span class="cat">+ &#8249; Implementation &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="8" checked="checked"> Implementation</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #BDECCC; border-color: #97DBAC;">
+        <span class="cat">+ &#8249; Simulation &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="5" checked="checked"> Simulation</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #F2D6EC; border-color: #EFADE1;">
+        <span class="cat">+ &#8249; String &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="23" checked="checked"> String</span>
+        </div>
+      </div>
+      <div class="wrap" style="background-color: #F7CBC1; border-color: #F4A896;">
+        <span class="cat">+ &#8249; Other &#8250;</span>
+        <div style="display: none"> 
+          <span class="color-tag"><input type="checkbox" class="tags" value="0" checked="checked"> Other</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="15" checked="checked"> Two pointers</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="22" checked="checked"> Divide and conquer</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="25" checked="checked"> Brute force</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="30" checked="checked"> Bitmasking</span>
+          <span class="color-tag"><input type="checkbox" class="tags" value="31" checked="checked"> Backtracking</span>
+        </div>
+      </div>
+      <br />
+      <input type="button" id="select-all" value="Select all">
+      <input type="button" id="clear-all" value="Clear all">
+    </div>
+    <div id="right-panel">
+      <div id="no-result"></div>
+      <div style="width: 100%; margin: 10px 0; border-bottom: #000000 1px dashed;">
+        <span id="prob-sol" class="asc" style="width: 30%; float:left; display: inline-block;">Solution &#9650;</span>
+        <span id="prob-stat" style="width: 70%; float:left; display: inline-block;">Problem statement</span>
+        <br />
+      </div>
+      <div id="display"></div>
+    </div>
+  </div>
+  <hr />
+  <footer></footer>
+<script src="scripts/var.js"></script>
+<script src="scripts/global.js"></script>
+<script src="scripts/sols.js"></script>
+</body>
+</html>

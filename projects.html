@@ -1,86 +1,85 @@
 <style>
-	#template, #template2 {
-		display: none;
-	}
-	
-	.lang {
-		width: 20px;
-		height: 20px;
-		margin: 0 5px 0 0;
-	}
+  #template, #template2 {
+    display: none;
+  }
+  
+  .lang {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 0;
+  }
 </style>
 <h5>APPLICATIONS</h5>
 <div class="row">
-	<div id="template">
-		<div class="col s12 m12 l6">
-			<div class="card hoverable">
-			<div class="card-image">
-				<img src="{0}">
-				<span class="card-title" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: 450;">{1}</span>
-			</div>
-			<div class="card-content" style="overflow-y: auto; height: 100px">
-				<p>{2}</p>
-			</div>
-			<div class="card-content">
-				{3}
-			</div>
-			<div class="card-action">
-				<a href="{4}">Visit</a>
-				<a href="javascript:go('{5}');">Screenshots</a>
-			</div>
-			</div>
-		</div>
-	</div>
-	<div id="display"></div>
+  <div id="template">
+    <div class="col s12 m12 l6">
+      <div class="card hoverable">
+      <div class="card-image">
+        <img src="{0}">
+        <span class="card-title" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: 450;">{1}</span>
+      </div>
+      <div class="card-content" style="overflow-y: auto; height: 100px">
+        <p>{2}</p>
+      </div>
+      <div class="card-content">
+        {3}
+      </div>
+      <div class="card-action">
+        <a href="{4}">Visit</a>
+        <a href="javascript:go('{5}');">Screenshots</a>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div id="display"></div>
 </div>
 <h5>MODULES</h5>
 <div class="row">
-	<div id="template2">
-		<div class="col s12 m12 l6">
-			<div class="card">
-				<div class="card-content">
-					<img src="images/{0}.png" class="lang">
-					<span class="card-title" style="font-weight: bold;">{1}</span>
-					<p>{2}</p>
-				</div>
-				<div class="card-content">
-					{3}
-				</div>
-				<div class="card-action">
-					<a href="{4}" target="_blank">Visit</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="display2"></div>
+  <div id="template2">
+    <div class="col s12 m12 l6">
+      <div class="card">
+        <div class="card-content">
+          <img src="images/{0}.png" class="lang">
+          <span class="card-title" style="font-weight: bold;">{1}</span>
+          <p>{2}</p>
+        </div>
+        <div class="card-content">
+          {3}
+        </div>
+        <div class="card-action">
+          <a href="{4}" target="_blank">Visit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="display2"></div>
 </div>
 <script>
-var applications = loadContent("applications");
-for (var i in applications) {
-	_ = applications[i];
-	if (_.status != "Y") continue;
-	var tags = "";
-	for (j in _.tags) {
-		tags += "<div class='chip'>" + _.tags[j] + "</div>"
-	}
-	var clone = document.getElementById("template").cloneNode(true);
-		clone.id = "";
-		clone.innerHTML = document.getElementById("template").innerHTML.format(_.picture, _.name, _.desc, tags, "javascript:alert('Currently not available')", _.screenshots);
-	document.getElementById("display").appendChild(clone);
-	
+let applications = loadContent("applications");
+for (let i in applications) {
+  _ = applications[i];
+  if (!_.status) continue;
+  let tags = "";
+  for (let j in _.tags) {
+    tags += "<div class='chip'>" + _.tags[j] + "</div>"
+  }
+  let clone = document.getElementById("template").cloneNode(true);
+  clone.id = "";
+  clone.innerHTML = document.getElementById("template").innerHTML.format(_.picture, _.name, _.desc, tags, (_.visit ? _.url : "javascript:alert('Currently not available')"), _.screenshots);
+  document.getElementById("display").appendChild(clone);
 }
-var modules = loadContent("modules");
-for (var i in modules) {
-	_ = modules[i];
-	if (_.status != "Y") continue;
-	var tags = "";
-	for (j in _.tags) {
-		tags += "<div class='chip'>" + _.tags[j] + "</div>"
-	}
-	var clone = document.getElementById("template2").cloneNode(true);
-		clone.id = "";
-		clone.innerHTML = document.getElementById("template2").innerHTML.format(_.language, _.name, _.desc, tags, _.url);
-	document.getElementById("display2").appendChild(clone);
-	
+let modules = loadContent("modules");
+for (let i in modules) {
+  _ = modules[i];
+  if (!_.status) continue;
+  let tags = "";
+  for (let j in _.tags) {
+    tags += "<div class='chip'>" + _.tags[j] + "</div>"
+  }
+  let clone = document.getElementById("template2").cloneNode(true);
+    clone.id = "";
+    clone.innerHTML = document.getElementById("template2").innerHTML.format(_.language, _.name, _.desc, tags, _.url);
+  document.getElementById("display2").appendChild(clone);
+  
 }
 </script>

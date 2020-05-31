@@ -1,0 +1,90 @@
+#template {
+  display: none;
+}
+#clear-all, #select-all {
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 5px;
+}
+#clear-all:hover, #select-all:hover {
+  cursor: hand;
+  border-color: #000000;
+}
+#clear-all {
+  background-color: #FE4210;
+  border: 1px solid #C33C15;
+  color: #FFFFFF;
+}
+#select-all {
+  background-color: #26F41B;
+  border: 1px solid #31C30C;
+  color: #000000;
+}
+#no-result {
+  margin: 10px 0;
+  text-align: right;
+}
+#left-panel {
+  width: 20%;
+  padding-right: 20px; 
+  margin-top: 15px;
+  text-align: left;
+}
+#right-panel {
+  width: 80%;
+}
+.tag {
+  margin: 5px 10px 5px 0;
+  padding: 2px 4px;
+  font-size: 8px;
+  border-radius: 3px;
+}
+.color-tag {
+  padding: 0 5px;
+  margin: 5px 0;
+  font-weight: normal;
+  font-size: 13px;
+  display: block;
+}
+.wrap {
+  border-style: solid;
+  border-width: 2px;
+  font-weight: bold;
+  margin: 0 15px 5px 0;
+  padding: 0 5px 0 5px;
+  display: inline-block;
+  width: 100%;
+}
+.cat {
+  display: block;
+}
+.cat:hover {
+  cursor: hand;
+}
+#prob-sol, #prob-stat {
+  cursor: hand;
+}
+@media only screen and (max-width: 1400px) {
+  #left-panel {
+    width: 30%;
+  }
+  #right-panel {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 850px) {
+  #left-panel {
+    width: 40%;
+  }
+  #right-panel {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 750px) {
+  #left-panel {
+    width: 100%;
+  }
+  #right-panel {
+    width: 100%;
+  }
+}
