@@ -1,48 +1,3 @@
-<!-- 
-Terminal Test 1.0
-A PEN BY Mina
-https://codepen.io/minabach/pen/KmxPxK?depth=everything&limit=all&order=popularity&page=27&q=terminal&show_forks=false
--->
-<script>
-$.fn.typewriter = function() {
-	this.each(function() {
-			var $ele = $(this), str = $ele.html(), progress = 0, offset = 0;
-			$ele.html('');
-			var typewriting = function() {
-				var hi = new RegExp(/<span class="highlight"/);
-				if (str.substring(progress, progress + 1) == "<") {
-					var re = new RegExp(/<span class="instant"/);
-					var cl = new RegExp(/<span class="clear"/);
-					if (str.substring(progress,str.length).match(re)) {
-						progress += str.substring(progress,str.length).indexOf('</span>')+7;
-					} else if (str.substring(progress,str.length).match(cl)) {
-						offset = progress;
-						progress += str.substring(progress,str.length).indexOf('</span>')+7;
-					} else {
-						while (str.substring(progress, progress + 1) != ">"){
-							progress++;
-						}
-					}
-				}
-				
-				$ele.html(str.substring(offset, progress++) + (progress & 1 ? ' +--+++-+--+--+-++--+-+ ' : ''));
-				if (progress >= str.length) {
-					$ele.html(str.substring(offset, progress) + "<br />[Last modified: " + document.lastModified + "]<br />");
-					return;
-				} else {
-					if (str.substring(progress,str.length).match(hi)) 
-						setTimeout(typewriting, 250);
-					else
-						setTimeout(typewriting, 10);
-				}
-			}
-			typewriting();
-		});
-		return this;
-	};
-// Uncomment to enable type writer
-// $('#terminal').typewriter();
-</script>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 
@@ -55,7 +10,7 @@ $.fn.typewriter = function() {
 	text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.4);
 	width: 100%px;
 	font-family: 'Droid Sans';
-  	font-weight: bold;
+  font-weight: bold;
 	/* text-transform: uppercase; */
 	border: none;
 	background-color: transparent;
@@ -72,38 +27,13 @@ $.fn.typewriter = function() {
 	text-align: justify;
 }
 .loadWord{
-font-family: 'Droid Sans';
+  font-family: 'Droid Sans';
 	font-size: 4.9em;
 }
 </style>
 <div id="terminal">
-<!--
-<span class="instant">
-******** WELCOME TO HIM0727 .NET ********
-</span>
-Loading... 
-<span class="loadWord">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ H ]<br /><br /></span>
-<span class="clear"></span>
-<span class="loadWord"><br /><br /><br />&nbsp;[ I ]<br /><br /></span>
-<span class="clear"></span>
-<span class="loadWord"><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ M ]<br /><br /></span>
-<span class="clear"></span>
-<span class="loadWord"><br /><br /><br /><br /><br />&nbsp;&nbsp;[ 0 ]<br /><br /></span>
-<span class="clear"></span>
-<span class="loadWord"><br /><br />&nbsp;&nbsp;&nbsp;[ 7 ]<br /><br /></span>
-<span class="clear"></span>
-<span class="loadWord"><br />[ 2 ]<br /><br /></span>
-<span class="clear"></span>
-<span class="loadWord"><br /><br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 7 ]<br /><br /></span>
-<span class="clear"></span>
-> <span class="highlight">WELCOME TO HIM0727 .NET ... <br />HIM0727 </span>graduated from PolyU in 2017 and currently working as a Cloud/DevOps Engineer.<br />
-> He is Nobody/ Coder/ Urbexer...
-> Click [<a href="javascript:go('about.html');">ABOUT</a>] to know more about him, [<a href="javascript:go('projects.html');">PROJECTS</a>] to see his stuff
-> Welcome to contact him via [<a href="mailto:him0727@hotmail.com">EMAIL</a>], [<a href="https://www.facebook.com/him0727" target='_blank'>FACEBOOK</a>] and [<a href="https://hk.linkedin.com/in/chan-tak-him-1876a982" target='_blank'>LINKEDIN</a>]
-> BYE BYE!
--->
 <span class="highlight">WELCOME TO HIM0727 .NET ...</span><br />
-Hi, I am Benny, graduated from PolyU in 2017. Currently working as a Cloud/DevOps Engineer at a bank.<br />
+Hi, I am Benny, graduated from HK PolyU in 2017. Currently working as a Cloud/DevOps Engineer at a bank.<br />
 My current focus is on AWS, Terraform, DevSecOps automation, Development practices and workflow, with some experience in GCP and Kubernetes.<br />
 Let's go to [<a href="javascript:go('about.html');">ABOUT</a>] and read more.<br />
 Have a good day.

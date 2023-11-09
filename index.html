@@ -12,14 +12,14 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" rel="stylesheet" />
 <link href="style/customize.css" rel="stylesheet" />
 <link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-<!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-11490216-2"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z8HTHXXZ4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-11490216-2');
+  gtag('config', 'G-5Z8HTHXXZ4');
 </script>
 </head>
 <body>
@@ -39,7 +39,7 @@
     <div class="row" id="topInfo">
       <img src="images/icon.JPG" alt="ICON" class="icon circle responsive-img" />
       <h5>HIM0727</h5>
-      <i>Nobody / Coder / Urbexer</i><br />
+      <i>Nobody / Urbexer / Coder</i><br />
     </div>
   </div>
   <br />
@@ -67,7 +67,11 @@
       $("#nav-pc").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
       $("#nav-mobile").append("<li><a href='javascript:go(\"{0}\")'>{1}</a></li>".format(_.url, _.name));
     }
-    $("#content").load("main.html");
+    let hash = $(location).attr('hash');
+    if (hash != "") {
+      hash = hash.substr(1);
+    }
+    go(hash);
   });
   </script>
 </body>

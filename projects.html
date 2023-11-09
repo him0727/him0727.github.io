@@ -1,85 +1,55 @@
 <style>
-  #template, #template2 {
+  #template, #archive_template {
     display: none;
   }
-  
-  .lang {
-    width: 20px;
-    height: 20px;
-    margin: 0 5px 0 0;
-  }
 </style>
-<h5>APPLICATIONS</h5>
-<div class="row">
-  <div id="template">
-    <div class="col s12 m12 l6">
-      <div class="card hoverable">
-      <div class="card-image">
-        <img src="{0}">
-        <span class="card-title" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: 450;">{1}</span>
-      </div>
-      <div class="card-content" style="overflow-y: auto; height: 100px">
-        <p>{2}</p>
-      </div>
-      <div class="card-content">
-        {3}
-      </div>
-      <div class="card-action">
-        <a href="{4}">Visit</a>
-        <a href="javascript:go('{5}');">Screenshots</a>
-      </div>
-      </div>
+<div id="template">
+  <div class="col s12 m12 l6">
+    <div class="card hoverable">
+    <div class="card-image">
+      <img src="{0}">
+      <span class="card-title" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight: 450;">{1}</span>
+    </div>
+    <div class="card-content" style="overflow-y: auto; height: 100px">
+      <p>{2}</p>
+    </div>
+    <div class="card-content">
+      {3}
+    </div>
+    <div class="card-action">
+      {4}
+      <span style="float: right;">Year created: {5}</span>
+    </div>
     </div>
   </div>
+</div>
+<h5>PROJECTS</h5>
+<div class="row">
   <div id="display"></div>
 </div>
-<h5>MODULES</h5>
+<h5>ARCHIVES</h5>
 <div class="row">
-  <div id="template2">
-    <div class="col s12 m12 l6">
-      <div class="card">
-        <div class="card-content">
-          <img src="images/{0}.png" class="lang">
-          <span class="card-title" style="font-weight: bold;">{1}</span>
-          <p>{2}</p>
-        </div>
-        <div class="card-content">
-          {3}
-        </div>
-        <div class="card-action">
-          <a href="{4}" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="display2"></div>
+  <div id="archive_display"></div>
 </div>
 <script>
 let applications = loadContent("applications");
 for (let i in applications) {
   _ = applications[i];
-  if (!_.status) continue;
+  if (!_.enabled) continue;
   let tags = "";
   for (let j in _.tags) {
     tags += "<div class='chip'>" + _.tags[j] + "</div>"
   }
   let clone = document.getElementById("template").cloneNode(true);
   clone.id = "";
-  clone.innerHTML = document.getElementById("template").innerHTML.format(_.picture, _.name, _.desc, tags, (_.visit ? _.url : "javascript:alert('Currently not available')"), _.screenshots);
-  document.getElementById("display").appendChild(clone);
-}
-let modules = loadContent("modules");
-for (let i in modules) {
-  _ = modules[i];
-  if (!_.status) continue;
-  let tags = "";
-  for (let j in _.tags) {
-    tags += "<div class='chip'>" + _.tags[j] + "</div>"
-  }
-  let clone = document.getElementById("template2").cloneNode(true);
-    clone.id = "";
-    clone.innerHTML = document.getElementById("template2").innerHTML.format(_.language, _.name, _.desc, tags, _.url);
-  document.getElementById("display2").appendChild(clone);
-  
+  clone.innerHTML = document.getElementById("template").innerHTML.format(
+    _.picture,
+    _.name,
+    _.desc,
+    tags,
+    _.archive ? "<a href=\"javascript:go('{0}');\">Screenshots</a>".format(_.screenshots) : "<a href=\"{0}\">Visit</a>".format(_.url),
+    _.date
+  );
+  document.getElementById(_.archive ? "archive_display" : "display").appendChild(clone);
 }
 </script>

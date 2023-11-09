@@ -12,10 +12,11 @@ h3 {
 #right-content {
   width: 75%;
   text-align: justify;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 20px;
   font-weight: 500;
-  font-family: "Candara";
+  font-family: "Verdana";
+  //font-family: "Candara";
 }
 #left-menu ul {
   padding: 0;

@@ -43,5 +43,9 @@ function loadContent(target) {
 }
 
 function go(target) {
-	$("#content").load(target);
+  window.location.href = "#" + target
+  if (target == "" || target == "index") {
+    target = "main"
+  }
+  $("#content").load(target + ".html");
 }

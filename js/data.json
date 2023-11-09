@@ -1,32 +1,121 @@
 {
-  "menu":
-    [
-      {"name": "HOME", "url": "main.html", "status": true},
-      {"name": "ABOUT", "url": "about.html", "status": true},
-      {"name": "PROJECTS", "url": "projects.html", "status": true},
-      {"name": "PLAYGROUND", "url": "playground.html", "status": true},
-      {"name": "ARCHIVE", "url": "archive.html", "status": true}
-    ],
-    
-  "links":
-    [
-      {"name": "EMAIL", "url": "mailto:him0727@hotmail.com", "icon": "images/email.png", "status": true},
-      {"name": "FACEBOOK", "url": "https://www.facebook.com/him0727", "icon": "images/facebook.png", "status": true},
-      {"name": "LINKEDIN", "url": "https://hk.linkedin.com/in/chan-tak-him-0727", "icon": "images/linkedin.png", "status": true},
-      {"name": "MORE", "url": "https://github.com/him0727", "icon": "images/github.png", "status": true}
-    ],
-    
-  "applications":
-    [
-      {"name": "Hong Kong Ruins Database", "url": "projects/ruinsDB", "desc": "Probably the largest database of abandonments in Hong Kong", "tags": ["URBEX", "URBAN EXPLORATION"], "picture": "images/projects/ruinsDB/cover.png", "screenshots": "projects/ruinsDB/screenshots.html", "status": true, "screen": true, "visit": false},
-      {"name": "Algohol", "url": "playground/algohol", "desc": "Practice your data structure and algorithm skills by solving my algorithmic puzzles!", "tags": ["DATA STRUCTURE", "ALGORITHM"], "picture": "playground/algohol/images/cover.png", "screenshots": "playground.html", "status": true, "screen": false, "visit": true},
-      {"name": "LIHKG DOS", "url": "projects/LIHKG", "desc": "A DOS style LIHKG reader", "tags": ["LIHKG"], "picture": "images/projects/LIHKG/cover.png", "screenshots": "projects/LIHKG/screenshots.html", "status": true},
-      {"name": "Responsive Website Tester", "url": "projects/RWTester", "desc": "Test how your website looks at different screen resolutions", "tags": ["RESPONSIVE WEBSITE DESIGN"], "picture": "images/projects/RWTester/cover.png", "screenshots": "projects/RWTester/screenshots.html", "status": true, "screen": true, "visit": false},
-      {"name": "TrigMapper", "url": "projects/trigMapper", "desc": "Providing API, information and navigation to trigonometrical stations in Hong Kong", "tags": ["GIS", "LAND SURVEYING"], "picture": "images/projects/trigMapper/cover.png", "screenshots": "projects/trigMapper/screenshots.html", "status": true, "screen": true, "visit": false}
-    ],
-    
-  "modules":
-    [
-      {"name": "Address Similarity", "url": "https://github.com/him0727/Address-Similarity", "desc": "A C++ module for calculating the similarity of two given addresses in Chinese and English *(Python old version also available). The code is anti-pattern, will refactor the bad design at some time.", "language": "cpp", "tags": ["C++", "STRING MANIPULATION", "SIMILARITY"], "status": true}
-    ]
+  "menu": [
+    {
+      "name": "HOME",
+      "url": "main",
+      "status": true
+    },
+    {
+      "name": "ABOUT",
+      "url": "about",
+      "status": true
+    },
+    {
+      "name": "PROJECTS",
+      "url": "projects",
+      "status": true
+    },
+    {
+      "name": "SHARES",
+      "url": "shares",
+      "status": true
+    }
+  ],
+  "links": [
+    {
+      "name": "EMAIL",
+      "url": "mailto:him0727@hotmail.com",
+      "icon": "images/email.png",
+      "status": true
+    },
+    {
+      "name": "FACEBOOK",
+      "url": "https://www.facebook.com/him0727",
+      "icon": "images/facebook.png",
+      "status": true
+    },
+    {
+      "name": "LINKEDIN",
+      "url": "https://hk.linkedin.com/in/chan-tak-him-0727",
+      "icon": "images/linkedin.png",
+      "status": true
+    },
+    {
+      "name": "MORE",
+      "url": "https://github.com/him0727",
+      "icon": "images/github.png",
+      "status": true
+    }
+  ],
+  "applications": [
+    {
+      "name": "Hong Kong Ruins Database",
+      "url": "projects/ruinsDB",
+      "desc": "Probably the largest database of abandonments in Hong Kong",
+      "tags": [
+        "URBEX",
+        "URBAN EXPLORATION"
+      ],
+      "picture": "images/projects/ruinsDB/cover.png",
+      "screenshots": "projects/ruinsDB/screenshots",
+      "enabled": true,
+      "date": "2015",
+      "archive": true
+    },
+    {
+      "name": "Algohol",
+      "url": "playground/algohol",
+      "desc": "Practice your data structure and algorithm skills by solving my algorithmic puzzles!",
+      "tags": [
+        "DATA STRUCTURE",
+        "ALGORITHM",
+        "COMPETITIVE PROGRAMMING"
+      ],
+      "picture": "playground/algohol/images/cover.png",
+      "screenshots": "playground",
+      "enabled": true,
+      "date": "2018",
+      "archive": false
+    },
+    {
+      "name": "LIHKG DOS",
+      "url": "projects/LIHKG",
+      "desc": "A DOS style LIHKG reader",
+      "tags": [
+        "LIHKG"
+      ],
+      "picture": "images/projects/LIHKG/cover.png",
+      "screenshots": "projects/LIHKG/screenshots",
+      "enabled": true,
+      "date": "2016",
+      "archive": true
+    },
+    {
+      "name": "Responsive Website Tester",
+      "url": "projects/RWTester",
+      "desc": "Test how your website looks at different screen resolutions",
+      "tags": [
+        "RESPONSIVE WEBSITE DESIGN"
+      ],
+      "picture": "images/projects/RWTester/cover.png",
+      "screenshots": "projects/RWTester/screenshots",
+      "enabled": true,
+      "date": "2015",
+      "archive": true
+    },
+    {
+      "name": "TrigMapper",
+      "url": "projects/trigMapper",
+      "desc": "Providing API, information and navigation to trigonometrical stations in Hong Kong",
+      "tags": [
+        "GIS",
+        "LAND SURVEYING"
+      ],
+      "picture": "images/projects/trigMapper/cover.png",
+      "screenshots": "projects/trigMapper/screenshots",
+      "enabled": true,
+      "date": "2017",
+      "archive": true
+    }
+  ]
 }
