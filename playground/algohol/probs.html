@@ -38,6 +38,7 @@
   <div class="content">
     <div id="left-menu" style="text-align: left">
       <ul>
+        <li>VILUNIT - Village Unity</li>
         <li>TLPNGEM2 - Teleporters and Gems II</li>
         <li>ACRYM - Acronym</li>
         <li>KTRANS - K-transfer journey</li>
@@ -56,6 +57,25 @@
     </div>
     <div id="right-content"></div>
     <div style="display: none;">
+      <div id="VILUNIT">
+        <div class="constraint">
+          Problem statement: <a href="https://www.spoj.com/problems/VILUNIT/" target="_blank">Link</a> | 
+          Time: 1s per test file | 
+          Source: 5000B | 
+          Memory: 1536MB | 
+          Languages: ALL<br />
+          Added on 2025-04-16<br />
+          Difficulty: 
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><br />
+          <span class="tag">Disjoint Set Union</span><span class="tag">Line Sweep</span><span class="tag">Geometry</span>
+        </div>
+        <hr />
+        I originally set N to 1000, but after seeing some O(N<sup>2</sup>) solutions get accepted, which I didn't expect, I have increased N to 5000. We should use a more efficient approach to solve the problem, shouldn't we?
+        <h3>Approach 1: Line sweep and set union(<a href="https://github.com/him0727/Online-Judge-Solutions/blob/master/SPOJ/My_problems/VILUNIT.cpp" target="_blank">Solution Link</a>)</h3>
+        The first step is to identify connected components by merging overlapping villages. Instead of performing pairwise testing, we sort the villages by x-coordinates and maintain an active set of villages that could potentially overlap. It is done by processing through events based on their x<sub>1</sub> (start) and x<sub>2</sub> (end). When a village from the active set and the current village overlap along the y-axis, we merge them using disjoint set union (DSU). By leveraging a binary search tree to maintain the active set in descending order based on their y<sub>1</sub>, this allows us to efficiently query which villages in the set have y<sub>1</sub> &lt; y<sub>2</sub> of the current village in O(log N), narrowing down the search space. You may note that in the worst-case time complexity, it is O(N<sup>2</sup>) when all villages overlap significantly, forcing pairwise interactions at every step. However, typically it is O(N log N) because most test cases are generated randomly. Once the villages have been divided into connected components, each represented by a rectilinear polygon where the interior angle at each vertex is 90 degrees, we proceed to connect them.<br /><br />
+        One key observation is that we can simplify these rectilinear polygons into bounding boxes. If two bounding boxes overlap along any axis, there exists a valid straight-line path between the original polygons. Even if two boudning boxes, A and B, overlap along both axises, and another bounding box C overlaps along a single axis, potentially altering the spatial relationship and suggesting an incorrect path A → C, instead of A → B, the final solution remains correct because we are not calculating the shortest distance. For example, if A, B and C both overlap along the x-axis, a vertical line can connect all of them. Thus, both (A → C, B → C) and (A → B, B → C) yield the minimum number of line segments. We only need to ensure that two connected bounding boxes are not redundantly connected again, which can be handled by DSU. By leveraging line sweep and DSU again, we can sort the bounding boxes by x-coordinates and sweep from left to right. If the x<sub>1</sub> of the current box &lt; the max(x<sub>2</sub>) of previous boxes, they can be connected by a vertical line, provided they were not previously connected. The same approach applies for the y-coordinates: sweeping along the y-axis, if the y<sub>1</sub> of the current box &lt; the max(y<sub>2</sub>) of previous boxes, they can be connected by a horizontal line, if not already connected. Finally, we determine which villages can be connected by a single line segment, as they are already grouped by DSU. For the remaining (number of connected bounding boxes - 1) components, it requires 2 line segments to connect each of them. Because of sorting, this part runs in O(N * log N).
+      </div>
       <div id="TLPNGEM2">
         <div class="constraint">
           Problem statement: <a href="https://www.spoj.com/problems/TLPNGEM2/" target="_blank">Link</a> | 
